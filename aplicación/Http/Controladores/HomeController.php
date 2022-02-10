@@ -38,7 +38,7 @@ class HomeController extends Controller
     {
         
 
-    //$sql = "SELECT nom_estra, estra_apren_interactivo, estra_apren_colabo, estra_autoapren, estra_didactica, compete_evaluar, estra_evaluacion, valoracion_estra FROM estrategias";
+    
 
     $resultado = Estrategia::all();
     $resultado1 = Herramienta::all();
