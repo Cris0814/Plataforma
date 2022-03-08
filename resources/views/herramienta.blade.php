@@ -51,7 +51,7 @@
         @enderror
       <form action="{{ route('herramienta.crear') }}" method="POST">
       @csrf
-      <div class="row">
+      <div class="row card-form">
       <div class="form-group col-md-6">
           <label for="nom_herra">Nombre Herramienta</label>
           <select name="nom_herra" class="form-control" id="nom_herra" value="{{ old('nom_herra') }}">
