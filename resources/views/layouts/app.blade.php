@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Plataforma') }}</title>
+    <title>{{ 'Plataforma I' }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -16,15 +16,18 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white">
+        
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ ('Plataforma') }}
+                    {{ ('Plataforma I') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -74,7 +77,12 @@
 
         <main class="py-4">
             @yield('content')
+            <img src="/adminlte/dist/img/p1.png"
+           alt="Plataforma Logo"
+           class="img-thumbnail center"
+           style="vertical-align:middle">
         </main>
     </div>
+    
 </body>
 </html>

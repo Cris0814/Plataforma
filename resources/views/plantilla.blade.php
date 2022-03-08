@@ -140,6 +140,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../../index3.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Institucion</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{ route('estrategia')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Estrategia</p>

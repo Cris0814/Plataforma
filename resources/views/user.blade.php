@@ -41,12 +41,14 @@
         <td>{{$item->modalidad}}</td>
         <td>
           <a href="{{ route('user.editar', $item) }}" class="btn btn-warning btn-sm">Editar</a>
-          
+          @can('eliminar docente')
           <form action="{{ route('user.eliminar', $item)}}" method="POST" class="d-inline">
           @method('DELETE')  
           @csrf
+          
             <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
           </form>
+          @endcan
         </td>
 
       </tr>
