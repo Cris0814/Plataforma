@@ -15,6 +15,7 @@ class CreateHerramientasTable extends Migration
     {
         Schema::create('herramientas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            
             $table->char('nom_herra',100);
             $table->char('tipo_licencia',100);
             $table->char('funciones',100);

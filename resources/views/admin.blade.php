@@ -72,9 +72,9 @@
           <label for="tipo">Tipo</label>
           <select name="tipo" class="form-control" id="tipo" value="{{ old('tipo') }}">
             <option value="" selected disabled>Seleccione una opción</option>
-            <option >Opcion1</option>
-            <option >Opcion2</option>
-            <option >Opcion3</option>
+            <option >Privada</option>
+            <option >Publica</option>
+            
           </select>
         </div>
         <div class="form-group col-md-6">

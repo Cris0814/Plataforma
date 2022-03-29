@@ -16,6 +16,9 @@ class CreateInstitucionTable extends Migration
         Schema::create('institucion', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->char('nombre',100);
+            $table->char('pais',100);
+            $table->char('ciudad',100);
+            $table->char('tipo',100);
             //$table->unsignedInteger ('institucion_id');
             $table->timestamps();
 

@@ -28,8 +28,11 @@ Route::get('/editarAdmin/{id}', 'AdminController@editar')->name('admin.editar');
 Route::put('/editarAdmin/{id}', 'AdminController@update')->name('admin.update');
 Route::delete('eliminarAdmin/{id}', 'AdminController@eliminar')->name('admin.eliminar');
 
+
+
+
 Route::get('herramienta', 'HerramientaController@herramienta')->name('herramienta');
-Route::post('herramienta', 'HerramientaController@crear')->name('herramienta.crear');
+ Route::post('herramienta', 'HerramientaController@crear')->name('herramienta.crear');
 Route::post('columna-store/', 'ColumnaController@store')->name('columna');
 Route::delete('columna-eliminar/{id}', 'ColumnaController@eliminarcol')->name('columna.eliminarcol');
 Route::get('/editarHerramienta/{id}', 'HerramientaController@editar')->name('herramienta.editar');
@@ -38,14 +41,38 @@ Route::delete('eliminarHerramienta/{id}', 'HerramientaController@eliminar')->nam
 
 
 
+
 Route::get('estrategia', 'EstrategiaController@estrategia')->name('estrategia');
 Route::post('estrategia', 'EstrategiaController@crear')->name('estrategia.crear');
 Route::post('columna-store/', 'ColumnaController@store')->name('columna');
+// Route::post('estrategia/', 'HerramientaController@crear')->name('herramienta.crear');
 Route::delete('columna-eliminar/{id}', 'ColumnaController@eliminarcol')->name('columna.eliminarcol');
 Route::get('/editarEstrategia/{id}', 'EstrategiaController@editar')->name('estrategia.editar');
-Route::post('columna-store/', 'ColumnaController@store')->name('columna');
 Route::put('/editarEstrategia/{id}', 'EstrategiaController@update')->name('estrategia.update');
 Route::delete('eliminarEstrategia/{id}', 'EstrategiaController@eliminar')->name('estrategia.eliminar'); 
+
+
+// Route::post('estrategia', 'EstrategiaController@nueva')->name('estrategia.nueva');
+// Route::get('/editarHerramienta/{id}', 'EstrategiaController@editarherramienta')->name('estrategia.editarherramienta');
+// Route::put('/editarHerramienta/{id}', 'EstrategiaController@updateherramienta')->name('estrategia.updateherramienta');
+// Route::delete('eliminarHerramienta/{id}', 'EstrategiaController@eliminarherramienta')->name('estrategia.eliminarherramienta'); 
+
+
+Route::get('institucion', 'InstitucionController@institucion')->name('institucion');
+Route::post('institucion', 'InstitucionController@crear')->name('institucion.crear');
+Route::post('columna-store/', 'ColumnaController@store')->name('columna');
+Route::delete('columna-eliminar/{id}', 'ColumnaController@eliminarcol')->name('columna.eliminarcol');
+Route::get('/editarInstitucion/{id}', 'InstitucionController@editar')->name('institucion.editar');
+Route::put('/editarInstitucion/{id}', 'InstitucionController@update')->name('institucion.update');
+Route::delete('eliminarInstitucion/{id}', 'InstitucionController@eliminar')->name('institucion.eliminar'); 
+
+Route::get('programa', 'ProgramaController@programa')->name('programa');
+Route::post('programa', 'ProgramaController@crear')->name('programa.crear');
+Route::post('columna-store/', 'ColumnaController@store')->name('columna');
+Route::delete('columna-eliminar/{id}', 'ColumnaController@eliminarcol')->name('columna.eliminarcol');
+Route::get('/editarPrograma/{id}', 'ProgramaController@editar')->name('programa.editar');
+Route::put('/editarPrograma/{id}', 'ProgramaController@update')->name('programa.update');
+Route::delete('eliminarPrograma/{id}', 'ProgramaController@eliminar')->name('programa.eliminar'); 
 
 
 Route::get('administrador', function () {

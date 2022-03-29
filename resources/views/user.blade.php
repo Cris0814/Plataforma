@@ -31,6 +31,7 @@
         <td>{{$item->name}}</td>
         <td>{{$item->email}}</td>
         <td>{{$item->edad}}</td>
+           
         <td>{{$item->institucion}}</td>
         <td>{{$item->programa}}</td>
         <td>{{$item->asignatura}}</td>

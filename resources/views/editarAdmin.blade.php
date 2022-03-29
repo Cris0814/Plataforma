@@ -8,45 +8,39 @@
           </div>
         @enderror
 
-        @error('edad')
+        @error('email')
           <div class="alert alert-danger">
-            La Edad es obligatoria
+            El E-mail es obligatorio
           </div>
         @enderror
 
-        @error('programa')
+        @error('institucion')
           <div class="alert alert-danger">
-            El Programa es obligatorio
+            La institucion es obligatoria
           </div>
         @enderror
         
-        @error('asignatura')
+        @error('tipo')
           <div class="alert alert-danger">
-            La asignatura es obligatoria
+            El tipo es obligatorio
           </div>
         @enderror
 
-        @error('num_estudiante')
+        @error('pais')
           <div class="alert alert-danger">
-            El Numero de estudiante es obligatorio
+            El País es obligatorio
           </div>
         @enderror
 
-        @error('num_m_h')
+        @error('ciudad')
           <div class="alert alert-danger">
-            El Numero de mujeres y hombres es obligatorio
+            La ciudad es abligatoria
           </div>
         @enderror
         
-        @error('semestre')
+        @error('region')
           <div class="alert alert-danger">
-            El Semestre es obligatorio
-          </div>
-        @enderror
-
-        @error('modalidad')
-          <div class="alert alert-danger">
-            La Modalidad es obligatoria
+            La region es obligatoria
           </div>
         @enderror
 
@@ -55,7 +49,7 @@
         <div class="alert alert success">{{ session('mensaje')}}</div>
 
         @endif
-<form action="{{ route('admin.update', $users->id) }}" method="POST">
+<form action="{{ route('user.update', $users->id) }}" method="POST">
 @method('PUT')      
 @csrf
 
@@ -69,77 +63,27 @@
           <input type="text" name="email" placeholder="E-mail" class="form-control" value="{{ $users->email }}" readonly>
         </div>
         <div class="form-group col-md-6">
-          <label for="edad">Edad</label>
-           <select name="edad" class="form-control" id="edad" value="{{ $users->edad }}">
+          <label for="institucion">Institucion</label>
+           <select name="institucion" class="form-control" id="institucion" value="{{ $users->institucion }}">
             <option value="" selected disabled>Seleccione una opción</option>
-            <option >18</option>
-            <option >19</option>
-            <option >20</option>
-            <option >21</option>
-            <option >22</option>
-            <option >23</option>
-            <option >24</option>
-            <option >25</option>
-            <option >26</option>
-            <option >27</option>
-            <option >28</option>
-            <option >29</option>
-            <option >30</option>
-            <option >31</option>
-            <option >32</option>
-            <option >33</option>
-            <option >34</option>
-            <option >35</option>
-            <option >36</option>
-            <option >37</option>
-            <option >38</option>
-            <option >39</option>
-            <option >40</option>
-            <option >41</option>
-            <option >42</option>
-            <option >43</option>
-            <option >44</option>
-            <option >45</option>
-            <option >46</option>
-            <option >47</option>
-            <option >48</option>
-            <option >49</option>
-            <option >50</option>
-            <option >51</option>
-            <option >52</option>
-            <option >53</option>
-            <option >54</option>
-            <option >55</option>
-            <option >56</option>
-            <option >57</option>
-            <option >58</option>
-            <option >59</option>
-            <option >60</option>
-            <option >61</option>
-            <option >62</option>
-            <option >63</option>
-            <option >64</option>
-            <option >65</option>
-            <option >66</option>
-            <option >67</option>
-            <option >68</option>
-            <option >69</option>
-            <option >70</option>
-            <option >71</option>
-            <option >72</option>
-            <option >73</option>
-            <option >74</option>
-            <option >75</option>
-            <option >76</option>
-            <option >77</option>
-            <option >78</option>
-            <option >79</option>
-            <option >80</option>
+            <option >JDC</option>
+            <option> ITESA</option>
+            
+            
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="programa">Programa</label>
-          <select name="programa" class="form-control" id="programa" value="{{ $users->programa }}">
+          <label for="tipo">Tipo</label>
+          <select name="tipo" class="form-control" id="tipo" value="{{ $users->tipo }}">
+            <option value="" selected disabled>Seleccione una opción</option>
+            <option ></option>
+            <option >Privada</option>
+            <option >Publica</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="pais">Pais</label>
+          <select name="pais" class="form-control" id="pais" value="{{ $users->pais }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >Opcion1</option>
             <option >Opcion2</option>
@@ -147,8 +91,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="asignatura">Asignatura</label>
-          <select name="asignatura" class="form-control" id="asignatura" value="{{ $users->asignatura }}">
+          <label for="ciudad">Ciudad</label>
+          <select name="ciudad" class="form-control" id="ciudad" value="{{ $users->ciudad }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >Opcion1</option>
             <option >Opcion2</option>
@@ -156,46 +100,12 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="num_estudiante">Numero de estudiantes</label>
-          <select name="num_estudiante" class="form-control" id="num_estudiante" value="{{ $users->num_estudiante }}">
+          <label for="region">Region</label>
+          <select name="region" class="form-control" id="region" value="{{ $users->region }}">
             <option value="" selected disabled>Seleccione una opción</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="num_m_h">Numero de Mujeres y Hombres</label>
-          <select name="num_m_h" class="form-control" id="num_m_h" value="{{ $users->num_m_h }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="semestre">Semestre</label>
-          <select name="semestre" class="form-control" id="semestre" value="{{ $users->semestre }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >I</option>
-            <option >II</option>
-            <option >III</option>
-            <option >IV</option>
-            <option >V</option>
-            <option >VI</option>
-            <option >VII</option>
-            <option >VIII</option>
-            <option >IX</option>
-            <option >X</option>
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="modalidad">Modalidad</label>
-          <select name="modalidad" class="form-control" id="modalidad" value="{{ $users->modalidad }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Virtual</option>
-            <option >Presencial</option>
-            <option >Semipresencial</option>
+            <option >Opcion1</option>
+            <option >Opcion2</option>
+            <option >Opcion3</option>
           </select>
         </div>
         <br>

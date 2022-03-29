@@ -22,6 +22,7 @@ class CreateEntidadsTable extends Migration
             $table->foreign('estrategias_id')->references('id')->on('estrategias');
             $table->unsignedBigInteger('herramientas_id');
             $table->foreign('herramientas_id')->references('id')->on('herramientas');
+            
             $table->timestamps();
         });
     }

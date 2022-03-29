@@ -15,14 +15,17 @@ class CreateEstrategiasTable extends Migration
     {
         Schema::create('estrategias', function (Blueprint $table) {
             $table->bigIncrements('id');
+            
+            $table->char('tipo_estra',100);
             $table->char('nom_estra',100);
-            $table->char('estra_apren_interactivo',100);
-            $table->char('estra_apren_colabo',100);
-            $table->char('estra_autoapren',100);
-            $table->char('estra_didactica',100);
-            $table->char('compete_evaluar',100);
-            $table->char('estra_evaluacion',100);
             $table->integer('valoracion_estra');
+            $table->char('estra_evaluacion',100);
+            $table->char('compete_evaluar',100);
+            $table->char('tipo_herra',100);
+            $table->char('nom_herra',100);
+            
+            
+            
             
             // $table->unsignedInteger('estrategias_instituciones_id');
 

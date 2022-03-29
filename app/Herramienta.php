@@ -10,15 +10,7 @@ class Herramienta extends Model
     
     protected $fillable = [
         'nom_herra',
-        'tipo_licencia',
-        'funciones',
-        'interaccion',
-        'diseño',
-        'usabilidad',
-        'documentacion',
-        'actualizaciones',
-        'porcentaje_aprove',
-        'porcentaje_aproba',
+        
         
     ];
 }

@@ -16,8 +16,7 @@
     
     <a href="{{ route('admin')}}" class="btn btn-primary">Admin</a>
     <a href="{{ route('user')}}" class="btn btn-primary">Docente</a>
-    <a href="{{ route('estrategia')}}" class="btn btn-primary">Estrategia</a>
-    <a href="{{ route('herramienta')}}" class="btn btn-primary">Herramienta</a>
+    
     
 
     </div>
@@ -134,29 +133,30 @@
               @endcan
               
               <li class="nav-item">
-                <a href="{{ route('user')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                <a href="" class="nav-link active">
+                  <i class="nav-icon far fa-circle "></i>
                   <p>Docente</p>
+                  <i class="right fas fa-angle-left"></i>
                 </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('estrategia')}}" class="nav-link ">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Registro</p>
+                    </a>
+                  </li>
+                  
+                </ul>
               </li>
+              @can('institucion')
               <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
+                <a href="{{ route('institucion')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Institucion</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{ route('estrategia')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Estrategia</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('herramienta')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Herramienta</p>
-                </a>
-              </li>
+              @endcan
+             
               
               <li class="nav-item">
                 <a href="../../index3.html" class="nav-link">

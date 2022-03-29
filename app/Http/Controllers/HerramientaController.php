@@ -7,6 +7,7 @@ use App\Http\Requests\HerramientaRequest;
 use App\Http\Requests\ColumnaRequest;
 use App;
 use App\Columna;
+use App\Estrategia;
 
 use App\Herramienta;
 
@@ -15,20 +16,25 @@ class HerramientaController extends Controller
 
     public function herramienta(){
         $herramientas = App\Herramienta::all();
+        $estrategias = App\Estrategia::all();
 
         $columnas = Columna::where('tipo_columnas', 'herramientas')->get();
 
 
-        return view('herramienta', compact('herramientas','columnas'));
+        return view('herramienta', compact('herramientas','estrategias','columnas'));
     }
 
     public function crear(Request $request){
        // return $request->all();
     //    dd($request->columnas);
        $herramientaNueva = new App\Herramienta;
+
+
     //    $entidadNueva = new App\Entidad;
+        
 
        $herramientaNueva->nom_herra = $request->nom_herra;
+       
        $herramientaNueva->tipo_licencia = $request->tipo_licencia;
        $herramientaNueva->funciones = $request->funciones;
        $herramientaNueva->interaccion = $request->interaccion;
@@ -68,6 +74,7 @@ class HerramientaController extends Controller
 
         $herramientaUpdate = App\Herramienta::findOrFail($id);
         $herramientaUpdate->nom_herra = $request->nom_herra;
+        
         $herramientaUpdate->tipo_licencia = $request->tipo_licencia;
         $herramientaUpdate->funciones = $request->funciones;
         $herramientaUpdate->interaccion = $request->interaccion;

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EstrategiaRequest extends FormRequest
+class ProgramaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,10 @@ class EstrategiaRequest extends FormRequest
     public function rules()
     {
         return [
-            'tipo_estra' => 'required',
-            'nom_estra' => 'required',
-            'valoracion_estra' => 'required',
-            'estra_evaluacion' => 'required',
-            'compete_evaluar' => 'required',
-            'tipo_herra' => 'required',
-            'nom_herra' => 'required',
+            'nombre' => 'required',
+            'institucion_id' => 'required',    
+            
+            
         ];
     }
 }

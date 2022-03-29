@@ -25,7 +25,7 @@ class HerramientaRequest extends FormRequest
     {
         return [
             'nom_herra' => 'required',
-            'tipo_licencia' => 'required',    
+            'tipo_licencia' => 'required',
             'funciones' => 'required',
             'interaccion' => 'required',
             'diseño' => 'required',
@@ -34,6 +34,8 @@ class HerramientaRequest extends FormRequest
             'actualizaciones' => 'required',
             'porcentaje_aprove' => 'required',
             'porcentaje_aproba' => 'required',
+
+            
         ];
     }
 }

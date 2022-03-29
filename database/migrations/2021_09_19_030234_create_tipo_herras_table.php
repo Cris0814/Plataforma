@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateColumnasTable extends Migration
+class CreateTipoHerrasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateColumnasTable extends Migration
      */
     public function up()
     {
-        Schema::create('columnas', function (Blueprint $table) {
+        Schema::create('tipo_herras', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('nombre');
-            $table-> enum ('tipo_columnas',['estrategias','herramientas','registros']);
+            $table->char('nombre',100);
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateColumnasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('columnas');
+        Schema::dropIfExists('tipo_herras');
     }
 }

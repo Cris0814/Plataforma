@@ -9,11 +9,10 @@ class Estrategia extends Model
     protected $table = 'estrategias';
     
     protected $fillable = [
+        'tipo_estra',
         'nom_estra',
-        'estra_apren_interactivo',
-        'estra_apren_colabo',
-        'estra_autoapren',
-        'estra_didactica',
+        'tipo_herra',
+        'nom_herra',
         'compete_evaluar',
         'estra_evaluacion',
         'valoracion_estra',
