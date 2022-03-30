@@ -55,16 +55,16 @@
 
       <div class="row">
         <div class="form-group col-md-6">
-          <label for="name">Nombre</label>
-          <input type="text" name="name" placeholder="Nombre" class="form-control" value="{{ $users->name }}" readonly>
+          <label class="text" for="name">Nombre</label>
+          <input type="text" name="name" placeholder="Nombre" class="form-control form-gape" value="{{ $users->name }}" readonly>
         </div>
         <div class="form-group col-md-6">
-          <label for="email">E-mail</label>
-          <input type="text" name="email" placeholder="E-mail" class="form-control" value="{{ $users->email }}" readonly>
+          <label class="text" for="email">E-mail</label>
+          <input type="text" name="email" placeholder="E-mail" class="form-control form-gape" value="{{ $users->email }}" readonly>
         </div>
         <div class="form-group col-md-6">
-          <label for="institucion">Institucion</label>
-           <select name="institucion" class="form-control" id="institucion" value="{{ $users->institucion }}">
+          <label class="text" for="institucion">Institucion</label>
+           <select name="institucion" class="form-control form-gape" id="institucion" value="{{ $users->institucion }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >JDC</option>
             <option> ITESA</option>
@@ -73,8 +73,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="tipo">Tipo</label>
-          <select name="tipo" class="form-control" id="tipo" value="{{ $users->tipo }}">
+          <label class="text" for="tipo">Tipo</label>
+          <select name="tipo" class="form-control form-gape" id="tipo" value="{{ $users->tipo }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option ></option>
             <option >Privada</option>
@@ -82,8 +82,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="pais">Pais</label>
-          <select name="pais" class="form-control" id="pais" value="{{ $users->pais }}">
+          <label class="text" for="pais">Pais</label>
+          <select name="pais" class="form-control form-gape" id="pais" value="{{ $users->pais }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >Opcion1</option>
             <option >Opcion2</option>
@@ -91,8 +91,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="ciudad">Ciudad</label>
-          <select name="ciudad" class="form-control" id="ciudad" value="{{ $users->ciudad }}">
+          <label class="text" for="ciudad">Ciudad</label>
+          <select name="ciudad" class="form-control form-gape" id="ciudad" value="{{ $users->ciudad }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >Opcion1</option>
             <option >Opcion2</option>
@@ -100,8 +100,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="region">Region</label>
-          <select name="region" class="form-control" id="region" value="{{ $users->region }}">
+          <label class="text" for="region">Region</label>
+          <select name="region" class="form-control form-gape" id="region" value="{{ $users->region }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >Opcion1</option>
             <option >Opcion2</option>

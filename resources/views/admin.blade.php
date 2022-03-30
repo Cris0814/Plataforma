@@ -2,8 +2,10 @@
 @extends('plantilla')
 
 @section('seccion')
-<h1> Administrador</h1>
-
+<h1 class="tittle"> Administrador</h1>
+<style>
+<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+</style>
        @error('name')
           <div class="alert alert-danger">
             El Nombre es obligatorio
@@ -45,23 +47,23 @@
             La region es obligatoria
           </div>
         @enderror
-
+    <div class="">
       <form action="{{ route('user.crear') }}" method="POST">
         @csrf
         <input type="text" name="role" value="1" hidden>
         <input type="text" name="is_admin" value="1" hidden>
-      <div class="row">
+      <div class="row card-form" style = "height: 70VH">
         <div class="form-group col-md-6">
-          <label for="name">Nombre</label>
-          <input type="text" name="name" placeholder="Nombre" class="form-control" value="{{ old('name') }}">
+          <label class = "text" for="name">Nombre</label>
+          <input type="text" name="name" placeholder="Nombre" class="form-control form-gape" value="{{ old('name') }}">
         </div>
         <div class="form-group col-md-6">
-          <label for="email">E-mail</label>
-          <input type="text" name="email" placeholder="E-mail" class="form-control" value="{{ old('email') }}">
+          <label class = "text" for="email">E-mail</label>
+          <input type="text" name="email" placeholder="E-mail" class="form-control form-gape" value="{{ old('email') }}">
         </div>
         <div class="form-group col-md-6">
-          <label for="institucion">Institucion</label>
-           <select name="institucion" class="form-control" id="institucion" value="{{ old('institucion') }}">
+          <label class = "text" for="institucion">Institucion</label>
+           <select name="institucion" class="form-control form-gape" id="institucion" value="{{ old('institucion') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >JDC</option>
             <option >ITESA</option>
@@ -69,17 +71,21 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="tipo">Tipo</label>
-          <select name="tipo" class="form-control" id="tipo" value="{{ old('tipo') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Privada</option>
-            <option >Publica</option>
-            
-          </select>
+        <label class = "text" for="tipo">Tipo</label>
+        <div class="row">
+          <div class="form-check col-md-5" style="margin-left:10px">
+            <input class="form-check-input" type="radio" name="radioType" id="type1" value="{{ old('tipo') }}">
+            <label class="form-check-label text" for="type1">Privada</label>
+          </div>
+          <div class="form-check col-md-6">
+            <input class="form-check-input radio-butn" type="radio" name="radioType" id="type2" value="{{ old('tipo') }}">
+            <label class="form-check-label text" for="type2">Pública</label>
+          </div>
+          </div>
         </div>
         <div class="form-group col-md-6">
-          <label for="pais">País</label>
-          <select name="pais" class="form-control" id="pais" value="{{ old('pais') }}">
+          <label class = "text" for="pais">País</label>
+          <select name="pais" class="form-control form-gape" id="pais" value="{{ old('pais') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >Opcion1</option>
             <option >Opcion2</option>
@@ -87,8 +93,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="ciudad">Ciudad</label>
-          <select name="ciudad" class="form-control" id="ciudad" value="{{ old('ciudad') }}">
+          <label class = "text" for="ciudad">Ciudad</label>
+          <select name="ciudad" class="form-control form-gape" id="ciudad" value="{{ old('ciudad') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >OPCION 1</option>
             <option >OPCION 2</option>
@@ -96,26 +102,26 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="region">Region</label>
-          <select name="region" class="form-control" id="region" value="{{ old('region') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Urbano</option>
-            <option >Rural</option>
-            
-        </select>
-        
-        <br>
-        <br>
-        <br>
-        <button class="btn btn-primary btn-block" type="submit">Agregar</button> 
-      </div>
+        <label class = "text" for="tipo">Región</label>
+        <div class="row">
+          <div class="form-check col-md-5" style="margin-left:10px">
+            <input class="form-check-input" type="radio" name="radioType1" id="typeR1" value="{{ old('region') }}">
+            <label class="form-check-label text" for="typeR1" >Urbano</label>
+          </div>
+          <div class="form-check col-md-6">
+            <input class="form-check-input radio-butn" type="radio" name="radioType1" id="typeR2" value="{{ old('region') }}">
+            <label class="form-check-label text" for="typeR2">Rural</label>
+          </div>
+          </div>
+        </div>
+        <button class="btn-form" type="submit" style = "margin:10px; margin-left:127px">Agregar</button> 
     </form>
     <br>
-
+</div>
 
 <div class="table-responsive">
-    <table class="table">
-  <thead>
+  <table class="table">
+  <thead class="text" style="background:#B0C4D9">
     <tr>
       <th scope="col">#Id</th>
       <th scope="col">Nombre</th>
@@ -128,7 +134,7 @@
       <th scope="col">Acciones</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="text" style="background:#EFE6E6">
       @foreach($admins as $item)
     <tr>
       <th scope="row">{{$item->id}}</th>
@@ -140,12 +146,21 @@
       <td>{{$item->ciudad}}</td>
       <td>{{$item->region}}</td>
       <td>
-        <a href="{{ route('admin.editar', $item) }}" class="btn btn-warning btn-sm">Editar</a>
+        <a href="{{ route('admin.editar', $item) }}" class="btn" style="background: #486A8C;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
+            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+          </svg>
+        </a>
+        
         
         <form action="{{ route('admin.eliminar', $item)}}" method="POST" class="d-inline">
         @method('DELETE')  
         @csrf
-          <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+          <button class="btn" style="background: #486A8C;" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
+              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+            </svg>
+          </button>
         </form>
       </td>
 

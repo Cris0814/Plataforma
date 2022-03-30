@@ -2,12 +2,14 @@
 @extends('plantilla')
 
 @section('seccion')
-<h1>Usuario Docente</h1>
-
+<h1 class="tittle" style = "margin-left:10px">Usuario Docente</h1>
+<style>
+<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+</style>
 
 <div class="table-responsive">
   <table class="table">
-    <thead>
+  <thead class="text" style="background:#B0C4D9">
       <tr>
         <th scope="col">#Id</th>
         <th scope="col">Nombre</th>
@@ -24,7 +26,7 @@
         <th scope="col">Acciones</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody >
         @foreach($users as $item)
       <tr>
         <th scope="row">{{$item->id}}</th>
@@ -41,17 +43,29 @@
         <td>{{$item->semestre}}</td>
         <td>{{$item->modalidad}}</td>
         <td>
-          <a href="{{ route('user.editar', $item) }}" class="btn btn-warning btn-sm">Editar</a>
-          @can('eliminar docente')
+          <div class="row">
+            <div class="col-md-6">
+          <a href="{{ route('user.editar', $item) }}" class="btn" style="background: #486A8C;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
+              <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+            </svg>
+          </a>
+          </div>
+          <div class="col-md-6">
+        @can('eliminar docente')
           <form action="{{ route('user.eliminar', $item)}}" method="POST" class="d-inline">
-          @method('DELETE')  
-          @csrf
-          
-            <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+        @method('DELETE')  
+        @csrf
+            <button class="btn" style="background: #486A8C;margin-left:5px" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
+                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+              </svg>
+            </button>
           </form>
-          @endcan
+        @endcan
+        </div>
+        </div>
         </td>
-
       </tr>
       @endforeach()
     </tbody>
@@ -101,10 +115,10 @@
         @enderror
       <form action="{{ route('estrategia.crear') }}" method="POST">
       @csrf
-      <div class="row">
+      <div class="row card-form" style = "height: 70VH">
       <div class="form-group col-md-6">
-          <label for="tipo_estra">Tipo de Estrategia</label>
-          <select name="tipo_estra" class="form-control" id="tipo_estra" value="{{ old('tipo_estra') }}">
+         <label class="text" for="tipo_estra">Tipo de Estrategia</label>
+          <select name="tipo_estra" class="form-control form-gape" id="tipo_estra" value="{{ old('tipo_estra') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >Estrategia de aprendizaje interactivo</option>
             <option >Estrategia de aprendizaje colaborativo</option>
@@ -115,8 +129,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="nom_estra">Nombre Estrategia</label>
-          <select name="nom_estra" class="form-control" id="nom_estra" value="{{ old('nom_estra') }}">
+         <label class="text" for="nom_estra">Nombre Estrategia</label>
+          <select name="nom_estra" class="form-control form-gape" id="nom_estra" value="{{ old('nom_estra') }}">
             <option  value="" selected disabled>Seleccione una opción</option>
             <option >Clase Magistral</option>
             <option >Analisis de videos</option>
@@ -173,8 +187,58 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="tipo_herra">Tipo de Herramienta</label>
-          <select name="tipo_herra" class="form-control" id="tipo_herra" value="{{ old('tipo_herra') }}">
+         <label class="text" for="valoracion_estra">Valoracion general de la estrategia</label>
+           <select name="valoracion_estra" class="form-control form-gape" id="valoracion_estra" value="{{ old('valoracion_estra') }}">
+            <option value="" selected disabled>Seleccione una opción</option>
+            <option >0</option>
+            <option >1</option>
+            <option >2</option>
+            <option >3</option>
+            <option >4</option>
+            <option >5</option>
+            <option >6</option>
+            <option >7</option>
+            <option >8</option>
+            <option >9</option>
+            <option >10</option>
+           
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+         <label class="text" for="estra_evaluacion">Estrategia de Evaluacion</label>
+          <select name="estra_evaluacion" class="form-control form-gape" id="estra_evaluacion" value="{{ old('estra_evaluacion') }}">
+            <option value="" selected disabled>Seleccione una opción</option>
+            <option >Poster</option>
+            <option >Examenes Escritos</option>
+            <option >Portafolio de evidencias</option>
+            <option >Examenes practicos</option>
+            <option >Listado de criterios de evaluacion propio</option>
+            <option >Bitacora de reflexion</option>
+            <option >Articulo</option>
+            <option >Proyecto</option>
+            <option >Ensayo</option>
+            <option >Trabajo de investigacion</option>
+            <option >Mapa mental</option>
+            <option >Mapa Conceptual</option>
+            <option >Linea de tiempo</option>
+            <option >Reseña de articulo</option>
+            <option >Potcast</option>
+            <option >Construccion de Video</option>
+          </select>
+        </div>
+        
+        <div class="form-group col-md-6">
+         <label class="text" for="compete_evaluar">Competencias a evaluar</label>
+          <select name="compete_evaluar" class="form-control form-gape" id="compete_evaluar" value="{{ old('compete_evaluar') }}">
+            <option value="" selected disabled>Seleccione una opción</option>
+            <option >Cognitivo</option>
+            <option >Procedimental</option>
+            <option >Actitudinal</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+         <label class="text" for="tipo_herra">Tipo de Herramienta</label>
+          <select name="tipo_herra" class="form-control form-gape" id="tipo_herra" value="{{ old('tipo_herra') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >Creacion de video</option>
             <option >Publicacion de videos videos</option>
@@ -183,8 +247,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="nom_herra">Nombre de la Herramienta</label>
-           <select name="nom_herra" class="form-control" id="nom_herra" value="{{ old('nom_herra') }}">
+         <label class="text" for="nom_herra">Nombre de la Herramienta</label>
+           <select name="nom_herra" class="form-control form-gape" id="nom_herra" value="{{ old('nom_herra') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             
             <option>Microsoft Word</option>
@@ -228,86 +292,39 @@
         </div>
         
         
-        <div class="form-group col-md-6">
-          <label for="compete_evaluar">Competencias a evaluar</label>
-          <select name="compete_evaluar" class="form-control" id="compete_evaluar" value="{{ old('compete_evaluar') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Cognitivo</option>
-            <option >Procedimental</option>
-            <option >Actitudinal</option>
-          </select>
-        </div>
         
-        <div class="form-group col-md-6">
-          <label for="estra_evaluacion">Estrategia de Evaluacion</label>
-          <select name="estra_evaluacion" class="form-control" id="estra_evaluacion" value="{{ old('estra_evaluacion') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Poster</option>
-            <option >Examenes Escritos</option>
-            <option >Portafolio de evidencias</option>
-            <option >Examenes practicos</option>
-            <option >Listado de criterios de evaluacion propio</option>
-            <option >Bitacora de reflexion</option>
-            <option >Articulo</option>
-            <option >Proyecto</option>
-            <option >Ensayo</option>
-            <option >Trabajo de investigacion</option>
-            <option >Mapa mental</option>
-            <option >Mapa Conceptual</option>
-            <option >Linea de tiempo</option>
-            <option >Reseña de articulo</option>
-            <option >Potcast</option>
-            <option >Construccion de Video</option>
-          </select>
-        </div>
+        
 
         
-        <div class="form-group col-md-6">
-          <label for="valoracion_estra">Valoracion general de la estrategia</label>
-           <select name="valoracion_estra" class="form-control" id="valoracion_estra" value="{{ old('valoracion_estra') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >0</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-            <option >6</option>
-            <option >7</option>
-            <option >8</option>
-            <option >9</option>
-            <option >10</option>
-           
-          </select>
-        </div>
+        
         @foreach($columnas as $column)
         <div class="form-group col-md-6">
-          <label for="{{$column->nombre}}">{{$column->nombre}}</label>
-          <input type="text" name="{{$column->nombre}}" class="form-control" value="" >
+         <label class="text" for="{{$column->nombre}}">{{$column->nombre}}</label>
+          <input type="text" name="{{$column->nombre}}" class="form-control form-gape" value="" >
           
                     
         </div>
         @endforeach
-        <br>
-        <br>
-        <br>
-        <button class="btn btn-primary btn-block" type="submit">Agregar</button> 
+        <button class="btn-form" type="submit" style = "margin-top:30px; margin-left:127px">Agregar</button> 
       </div>
     </form>
     <br>
     
     <div class="table-responsive">
 <table class="table">
-  <thead>
+  <thead class="text" style="background:#B0C4D9">
     <tr>
       <th scope="col">#Id</th>
       <th scope="col">Tipo de Estrategia</th>
       <th scope="col">Nombre de Estrategia</th>
+      <th scope="col">Valoracion general de la estrategia</th>
+      <th scope="col">Estrategia de Evaluacion</th>
+      <th scope="col">Competencias a Evaluar</th>
       <th scope="col">Tipo de Herramienta</th>
       <th scope="col">Nombre de la Herramienta</th>
-      <th scope="col">Competencias a Evaluar</th>
-      <th scope="col">Estrategia de Evaluacion</th>
-      <th scope="col">Valoracion general de la estrategia</th>
+      
+      
+      
        @can('add')     
       @foreach($columnas as $column)
       <th scope="col">{{$column->nombre}}&nbsp<button class="btn btn-danger" data-toggle="modal" data-target="#modaleliminar{{ $column->id }}">-</button></th>
@@ -342,29 +359,39 @@
       @endcan
       <th scope="col">Acciones</th>
       @can('add')
-      <th scope="col"><button class="btn btn-block bg-gradient-primary" typw="" data-toggle="modal" data-target="#exampleModal">+</button></th>
+      <th scope="col"><button class="btn btn-block" typw="" data-toggle="modal" data-target="#exampleModal" style="background:#486A8C;color:#EFE6E6; font-size: 18px;">+</button></th>
       @endcan
     </tr>
   </thead>
-  <tbody>
+  <tbody class = "text">
       @foreach($estrategias as $item)
     <tr>
       <th scope="row">{{$item->id}}</th>
       <td>{{$item->tipo_estra}}</td>
       <td>{{$item->nom_estra}}</td>
+      <td>{{$item->valoracion_estra}}</td>
+      <td>{{$item->estra_evaluacion}}</td>
+      <td>{{$item->compete_evaluar}}</td>
       <td>{{$item->tipo_herra}}</td>
       <td>{{$item->nom_herra}}</td>
-      <td>{{$item->compete_evaluar}}</td>
-      <td>{{$item->estra_evaluacion}}</td>
-      <td>{{$item->valoracion_estra}}</td>
+      
+      
+      
       <td>
-        <a href="{{ route('estrategia.editar', $item) }}" class="btn btn-warning btn-sm">Editar</a>
-
-        <form action="{{ route('estrategia.eliminar', $item) }}" method="POST" class="d-inline">
-          @method('DELETE')
-          @csrf
-            <button class="btn btn-danger btn-sm" type="submit">Eliminar</button> 
-        </form>    
+      <a href="{{ route('estrategia.editar', $item) }}" class="btn" style="background: #486A8C;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
+            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+          </svg>
+        </a>
+        <form action="{{ route('estrategia.eliminar', $item)}}" method="POST" class="d-inline">
+        @method('DELETE')  
+        @csrf
+        <button class="btn" style="background: #486A8C;" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
+              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+            </svg>
+          </button>
+        </form>
       </td>
     </tr>
     @endforeach()
@@ -375,7 +402,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Columna</h5>
+        <h5 class="modal-title text" style="font-size:20px" id="exampleModalLabel">Agregar columna</h5>
     
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -384,11 +411,12 @@
       <div class="modal-body">
           <form action="{{ route('columna') }}" method="POST">
           @csrf
-          <label for="name">Nombre Columna</label>
-          <input type="text" name="nombre" placeholder="Nombre Columna" class="form-control" value="" >
-          <input type="text" name="tipo_columnas"  value="estrategias" hidden>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button  class="btn btn-primary" type="submit">Save changes</button>
+          <label for="name" class = "text">Nombre Columna</label>
+          <input type="text" name="nombre" placeholder="Nombre Columna" class="form-control form-gape" value="" >
+          <input type="text" name="tipo_columnas"  value="instituciones" hidden>
+          <br>
+          <button type="button" class="btn btn-secondary" style = "border-radius:10px" data-dismiss="modal">Close</button>
+          <button  class="btn" type="submit"style="background:#486A8C;color:#EFE6E6; font-size: 18px; border-radius:10px">Save changes</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -451,8 +479,8 @@
       <div class="row card-form">
       
       <div class="form-group col-md-6">
-          <label for="nom_herra">Nombre Herramienta</label>
-          <select name="nom_herra" class="form-control" id="nom_herra" value="{{ old('nom_herra') }}">
+         <label class="text" for="nom_herra">Nombre Herramienta</label>
+          <select name="nom_herra" class="form-control form-gape" id="nom_herra" value="{{ old('nom_herra') }}">
             <option  value="" selected disabled>Seleccione una opción</option>
             <option>Microsoft Word</option>
             <option>Microsoft Excel</option>
@@ -490,8 +518,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="tipo_licencia">Tipo Licencia</label>
-          <select name="tipo_licencia" class="form-control" id="tipo_licencia" value="{{ old('tipo_licencia') }}">
+         <label class="text" for="tipo_licencia">Tipo Licencia</label>
+          <select name="tipo_licencia" class="form-control form-gape" id="tipo_licencia" value="{{ old('tipo_licencia') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option>Propietaria</option>
             <option>Libre</option>
@@ -499,8 +527,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="funciones">Portafolio de Funciones</label>
-          <select name="funciones" class="form-control" id="funciones" value="{{ old('funciones') }}">
+         <label class="text" for="funciones">Portafolio de Funciones</label>
+          <select name="funciones" class="form-control form-gape" id="funciones" value="{{ old('funciones') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option>Audio</option>
             <option>Video</option>
@@ -513,8 +541,8 @@
 
         
         <div class="form-group col-md-6">
-          <label for="interaccion">Interaccion</label>
-           <select name="interaccion" class="form-control" id="interaccion" value="{{ old('interaccion') }}">
+         <label class="text" for="interaccion">Interaccion</label>
+           <select name="interaccion" class="form-control form-gape" id="interaccion" value="{{ old('interaccion') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >1</option>
             <option >2</option>
@@ -525,8 +553,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="diseño">Diseño</label>
-           <select name="diseño" class="form-control" id="diseño" value="{{ old('diseño') }}">
+         <label class="text" for="diseño">Diseño</label>
+           <select name="diseño" class="form-control form-gape" id="diseño" value="{{ old('diseño') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >1</option>
             <option >2</option>
@@ -537,8 +565,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="usabilidad">Usabilidad</label>
-           <select name="usabilidad" class="form-control" id="usabilidad" value="{{ old('usabilidad') }}">
+         <label class="text" for="usabilidad">Usabilidad</label>
+           <select name="usabilidad" class="form-control form-gape" id="usabilidad" value="{{ old('usabilidad') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >1</option>
             <option >2</option>
@@ -549,8 +577,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="documentacion">Documentacion</label>
-           <select name="documentacion" class="form-control" id="documentacion" value="{{ old('documentacion') }}">
+         <label class="text" for="documentacion">Documentacion</label>
+           <select name="documentacion" class="form-control form-gape" id="documentacion" value="{{ old('documentacion') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >1</option>
             <option >2</option>
@@ -561,8 +589,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="actualizaciones">Actualizaciones</label>
-           <select name="actualizaciones" class="form-control" id="actualizaciones" value="{{ old('actualizaciones') }}">
+         <label class="text" for="actualizaciones">Actualizaciones</label>
+           <select name="actualizaciones" class="form-control form-gape" id="actualizaciones" value="{{ old('actualizaciones') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >1</option>
             <option >2</option>
@@ -573,8 +601,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="porcentaje_aprove">Porcentaje de Aprovechamiento</label>
-           <select name="porcentaje_aprove" class="form-control" id="porcentaje_aprove" value="{{ old('porcentaje_aprove') }}">
+         <label class="text" for="porcentaje_aprove">Porcentaje de Aprovechamiento</label>
+           <select name="porcentaje_aprove" class="form-control form-gape" id="porcentaje_aprove" value="{{ old('porcentaje_aprove') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >0</option>
             <option >1</option>
@@ -591,8 +619,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="porcentaje_aproba">Porcentaje de Aprobacion</label>
-           <select name="porcentaje_aproba" class="form-control" id="porcentaje_aproba" value="{{ old('porcentaje_aproba') }}">
+         <label class="text" for="porcentaje_aproba">Porcentaje de Aprobacion</label>
+           <select name="porcentaje_aproba" class="form-control form-gape" id="porcentaje_aproba" value="{{ old('porcentaje_aproba') }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >0</option>
             <option >1</option>
@@ -610,15 +638,13 @@
         </div>
         @foreach($columnas as $key=>$column)
         <div class="form-group col-md-6">
-          <label for="{{$column->nombre}}">{{$column->nombre}}</label>
-          <input type="text" name="columnas[{{$column->id}}]" class="form-control" value="" >
+         <label class="text" for="{{$column->nombre}}">{{$column->nombre}}</label>
+          <input type="text" name="columnas[{{$column->id}}]" class="form-control form-gape" value="" >
               
         </div>
         @endforeach
         <br>
-        <br>
-        <br>
-        <button class="btn btn-primary btn-block" typw="submit">Agregar</button> 
+          <button class="btn-form" type="submit" style = "margin:10px; margin-left:127px">Agregar</button> 
       </div>
     </form>
     
@@ -626,7 +652,7 @@
     <br>
     <div class="table-responsive">
     <table class="table">
-  <thead>
+  <thead class="text" style="background:#B0C4D9">
     <tr>
       <th scope="col">#Id</th>
       <th scope="col">Nombre Herramienta</th>
@@ -682,11 +708,13 @@
     </tr>
   </thead>
   </div>
-  <tbody>
+  <tbody class = "text">
       @foreach($herramientas as $item1)
     <tr>
       <th scope="row">{{$item1->id}}</th>
-      <td>{{$item1->nom_herra}}</td>
+      @foreach($estrategias as $item3)
+      <td>{{$item3->nom_herra}}</td>
+      @endforeach
       <td>{{$item1->tipo_licencia}}</td>
       <td>{{$item1->funciones}}</td>
       <td>{{$item1->interaccion}}</td>
@@ -697,12 +725,19 @@
       <td>{{$item1->porcentaje_aprove}}</td>
       <td>{{$item1->porcentaje_aproba}}</td>
       <td>
-        <a href="{{ route('herramienta.editar', $item1) }}" class="btn btn-warning btn-sm">Editar</a>
-        
-        <form action="{{ route('herramienta.eliminar', $item1)}}" method="POST" class="d-inline">
+      <a href="{{ route('herramienta.editar', $item) }}" class="btn" style="background: #486A8C;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
+            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+          </svg>
+        </a>
+        <form action="{{ route('herramienta.eliminar', $item)}}" method="POST" class="d-inline">
         @method('DELETE')  
         @csrf
-          <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+        <button class="btn" style="background: #486A8C;" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
+              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+            </svg>
+          </button>
         </form>
       </td>
     </tr>
@@ -725,8 +760,8 @@
       <div class="modal-body">
           <form action="{{ route('columna') }}" method="POST">
           @csrf
-          <label for="name">Nombre Columna</label>
-          <input type="text" name="nombre" placeholder="Nombre Columna" class="form-control" value="" >
+         <label class="text" for="name">Nombre Columna</label>
+          <input type="text" name="nombre" placeholder="Nombre Columna" class="form-control form-gape" value="" >
           <input type="text" name="tipo_columnas"  value="herramientas" hidden>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button  class="btn btn-primary" type="submit">Save changes</button>

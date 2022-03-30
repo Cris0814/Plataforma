@@ -48,38 +48,38 @@ class HomeController extends Controller
     $hojaActiva = $excel->getActiveSheet();
     $hojaActiva->setTitle("Archivo plano");
 
-    $hojaActiva->setCellValue('A1','nom_estra');
-    $hojaActiva->setCellValue('B1','estra_apren_interactivo');
-    $hojaActiva->setCellValue('C1','estra_apren_colabo');
-    $hojaActiva->setCellValue('D1','estra_autoapren');
-    $hojaActiva->setCellValue('E1','estra_didactica');
-    $hojaActiva->setCellValue('F1','compete_evaluar');
-    $hojaActiva->setCellValue('G1','estra_evaluacion');
-    $hojaActiva->setCellValue('H1','valoracion_estra');
+    $hojaActiva->setCellValue('A1','tipo_estra');
+    $hojaActiva->setCellValue('B1','nom_estra');
+    $hojaActiva->setCellValue('C1','valoracion_estra');
+    $hojaActiva->setCellValue('D1','estra_evaluacion');
+    $hojaActiva->setCellValue('E1','compete_evaluar');
+    $hojaActiva->setCellValue('F1','tipo_herra');
+    $hojaActiva->setCellValue('G1','nom_herra');
+    
 
-    $hojaActiva->setCellValue('I1','nom_herra');
-    $hojaActiva->setCellValue('J1','tipo_licencia');
-    $hojaActiva->setCellValue('K1','funciones');
-    $hojaActiva->setCellValue('L1','interaccion');
-    $hojaActiva->setCellValue('M1','diseño');
-    $hojaActiva->setCellValue('N1','usabilidad');
-    $hojaActiva->setCellValue('O1','documentacion');
-    $hojaActiva->setCellValue('P1','actualizaciones');
-    $hojaActiva->setCellValue('Q1','porcentaje_aprove');
-    $hojaActiva->setCellValue('R1','porcentaje_aproba');
+    // $hojaActiva->setCellValue('I1','nom_herra');
+    $hojaActiva->setCellValue('H1','tipo_licencia');
+    $hojaActiva->setCellValue('I1','funciones');
+    $hojaActiva->setCellValue('J1','interaccion');
+    $hojaActiva->setCellValue('K1','diseño');
+    $hojaActiva->setCellValue('L1','usabilidad');
+    $hojaActiva->setCellValue('M1','documentacion');
+    $hojaActiva->setCellValue('N1','actualizaciones');
+    $hojaActiva->setCellValue('O1','porcentaje_aprove');
+    $hojaActiva->setCellValue('P1','porcentaje_aproba');
 
 $fila = 2;
 
 
 foreach($resultado as $estrategia=>$rows){
-    $hojaActiva->setCellValue('A'.$fila, $rows['nom_estra']);
-    $hojaActiva->setCellValue('B'.$fila, $rows['estra_apren_interactivo']);
-    $hojaActiva->setCellValue('C'.$fila, $rows['estra_apren_colabo']);
-    $hojaActiva->setCellValue('D'.$fila, $rows['estra_autoapren']);
-    $hojaActiva->setCellValue('E'.$fila, $rows['estra_didactica']);
-    $hojaActiva->setCellValue('F'.$fila, $rows['compete_evaluar']);
-    $hojaActiva->setCellValue('G'.$fila, $rows['estra_evaluacion']);
-    $hojaActiva->setCellValue('H'.$fila, $rows['valoracion_estra']);
+    $hojaActiva->setCellValue('A'.$fila, $rows['tipo_estra']);
+    $hojaActiva->setCellValue('B'.$fila, $rows['nom_estra']);
+    $hojaActiva->setCellValue('C'.$fila, $rows['valoracion_estra']);
+    $hojaActiva->setCellValue('D'.$fila, $rows['estra_evaluacion']);
+    $hojaActiva->setCellValue('E'.$fila, $rows['compete_evaluar']);
+    $hojaActiva->setCellValue('F'.$fila, $rows['tipo_herra']);
+    $hojaActiva->setCellValue('G'.$fila, $rows['nom_herra']);
+    
 
     
 
@@ -88,16 +88,16 @@ foreach($resultado as $estrategia=>$rows){
 }
 $fila = 2;
 foreach($resultado1 as $herramienta=>$rows){
-    $hojaActiva->setCellValue('I'.$fila, $rows['nom_herra']);
-    $hojaActiva->setCellValue('J'.$fila, $rows['tipo_licencia']);
-    $hojaActiva->setCellValue('K'.$fila, $rows['funciones']);
-    $hojaActiva->setCellValue('L'.$fila, $rows['interaccion']);
-    $hojaActiva->setCellValue('M'.$fila, $rows['diseño']);
-    $hojaActiva->setCellValue('N'.$fila, $rows['usabilidad']);
-    $hojaActiva->setCellValue('O'.$fila, $rows['documentacion']);
-    $hojaActiva->setCellValue('P'.$fila, $rows['actualizaciones']);
-    $hojaActiva->setCellValue('Q'.$fila, $rows['porcentaje_aprove']);
-    $hojaActiva->setCellValue('R'.$fila, $rows['porcentaje_aproba']);
+    // $hojaActiva->setCellValue('I'.$fila, $rows['nom_herra']);
+    $hojaActiva->setCellValue('H'.$fila, $rows['tipo_licencia']);
+    $hojaActiva->setCellValue('I'.$fila, $rows['funciones']);
+    $hojaActiva->setCellValue('J'.$fila, $rows['interaccion']);
+    $hojaActiva->setCellValue('K'.$fila, $rows['diseño']);
+    $hojaActiva->setCellValue('L'.$fila, $rows['usabilidad']);
+    $hojaActiva->setCellValue('M'.$fila, $rows['documentacion']);
+    $hojaActiva->setCellValue('N'.$fila, $rows['actualizaciones']);
+    $hojaActiva->setCellValue('O'.$fila, $rows['porcentaje_aprove']);
+    $hojaActiva->setCellValue('P'.$fila, $rows['porcentaje_aproba']);
     $fila++;
 }
 

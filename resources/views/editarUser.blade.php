@@ -3,7 +3,10 @@
 
 @section('seccion')
 
-<h1>Editar Docente</h1>
+<h1 class="tittle">Editar Docente</h1>
+<style>
+<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+</style>
 @error('name')
           <div class="alert alert-danger">
             El Nombre es obligatorio
@@ -65,19 +68,19 @@
 @method('PUT')      
 @csrf
 
-      <div class="row">
+      <div class="row card-form">
         <div class="form-group col-md-6">
-          <label for="name">Nombre</label>
-          <input type="text" name="name" placeholder="Nombre" class="form-control" value="{{ $users->name }}" readonly>
+          <label class = "text" for="name">Nombre</label>
+          <input type="text" name="name" placeholder="Nombre" class="form-control form-gape" value="{{ $users->name }}" readonly>
         </div>
         <div class="form-group col-md-6">
-          <label for="email">E-mail</label>
-          <input type="text" name="email" placeholder="E-mail" class="form-control" value="{{ $users->email }}" readonly>
+          <label class = "text" for="email">E-mail</label>
+          <input type="text" name="email" placeholder="E-mail" class="form-control form-gape" value="{{ $users->email }}" readonly>
         </div>
         <div class="form-group col-md-6">
-          <label for="institucion">Institucion</label>
+          <label class = "text" for="institucion">Institucion</label>
           
-          <select name="institucion" class="form-control" id="select-institucion" value="{{ $users->institucion }}">
+          <select name="institucion" class="form-control form-gape" id="select-institucion" value="{{ $users->institucion }}">
           <option value="" selected disabled>Seleccione una Institucion</option>
 
                 @foreach($instituciones as $institucion)
@@ -91,15 +94,15 @@
 
         </div>
         <div class="form-group col-md-6">
-          <label for="programa">Programa</label>
-          <select name="programa" class="form-control" id="select-programa" value="{{ $users->programa }}">
+          <label class = "text" for="programa">Programa</label>
+          <select name="programa" class="form-control form-gape" id="select-programa" value="{{ $users->programa }}">
            </select>
            
 </option>
         </div>
         <div class="form-group col-md-6">
-          <label for="edad">Edad</label>
-           <select name="edad" class="form-control" id="edad" value="{{ $users->edad }}">
+          <label class = "text" for="edad">Edad</label>
+           <select name="edad" class="form-control form-gape" id="edad" value="{{ $users->edad }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >18</option>
             <option >19</option>
@@ -168,12 +171,12 @@
         </div>
 
         <div class="form-group col-md-6">
-          <label for="asignatura">Asignatura</label>
-          <input type="text" name="asignatura" placeholder="asignatura" class="form-control" value="{{ $users->asignatura }}">
+          <label class = "text" for="asignatura">Asignatura</label>
+          <input type="text" name="asignatura" placeholder="asignatura" class="form-control form-gape" value="{{ $users->asignatura }}">
         </div>
         <div class="form-group col-md-6">
-          <label for="num_estudiante">Numero de estudiantes</label>
-          <select name="num_estudiante" class="form-control" id="num_estudiante" value="{{ $users->num_estudiante }}">
+          <label class = "text" for="num_estudiante">Numero de estudiantes</label>
+          <select name="num_estudiante" class="form-control form-gape" id="num_estudiante" value="{{ $users->num_estudiante }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >10-20</option>
             <option >21-30</option>
@@ -185,18 +188,18 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="num_m">Numero de Mujeres </label>
-          <input type="number" name="num_m" placeholder="numero mujeres"class="form-control" id="num_m" value="{{ $users->num_m }}">
+          <label class = "text" for="num_m">Numero de Mujeres </label>
+          <input type="number" name="num_m" placeholder="numero mujeres"class="form-control form-gape" id="num_m" value="{{ $users->num_m }}">
                   
         </div>
         <div class="form-group col-md-6">
-          <label for="num_h">Numero de Hombres </label>
-          <input type="number" name="num_h" placeholder="numero hombres"class="form-control" id="num_h" value="{{ $users->num_h }}">
+          <label class = "text" for="num_h">Numero de Hombres </label>
+          <input type="number" name="num_h" placeholder="numero hombres"class="form-control form-gape" id="num_h" value="{{ $users->num_h }}">
                   
         </div>
         <div class="form-group col-md-6">
-          <label for="semestre">Semestre</label>
-          <select name="semestre" class="form-control" id="semestre" value="{{ $users->semestre }}">
+          <label class = "text" for="semestre">Semestre</label>
+          <select name="semestre" class="form-control form-gape" id="semestre" value="{{ $users->semestre }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >I</option>
             <option >II</option>
@@ -211,8 +214,8 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="modalidad">Modalidad</label>
-          <select name="modalidad" class="form-control" id="modalidad" value="{{ $users->modalidad }}">
+          <label class = "text" for="modalidad">Modalidad</label>
+          <select name="modalidad" class="form-control form-gape" id="modalidad" value="{{ $users->modalidad }}">
             <option value="" selected disabled>Seleccione una opción</option>
             <option >Virtual</option>
             <option >A distancia</option>
@@ -220,10 +223,10 @@
             <option >Dual</option>
           </select>
         </div>
-        <br>
-        <br>
-        <br>
-        <button class="btn btn-warning btn-block" type="submit">Guardar</button> 
+        <div class="form-group col-md-6">
+          <br>
+          <button class="btn-form" type="submit" style = "margin:10px; margin-left:127px">Guardar</button> 
+        </div>
       </div>
     </form>
 

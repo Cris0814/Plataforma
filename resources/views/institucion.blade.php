@@ -2,7 +2,10 @@
 
 @section('seccion')
 
-<h1>Institucion</h1>
+<h1 class="tittle">Institucion</h1>
+<style>
+<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+</style>
 @error('nombre')
           <div class="alert alert-danger">
             El Nombre es obligatorio
@@ -29,38 +32,49 @@
         <form action="{{ route('institucion.crear') }}" method="POST">     
         @csrf
 
-      <div class="row">
+      <div class="row card-form" style = "height: 53VH">
         <div class="form-group col-md-6">
-          <label for="nombre">Nombre</label>
-          <input type="text" name="nombre" placeholder="Nombre" class="form-control" value="{{ old('nombre') }}" >
+          <label class = "text" for="nombre">Nombre</label>
+          <input type="text" name="nombre" placeholder="Nombre" class="form-control form-gape" value="{{ old('nombre') }}" >
         </div>
+
         <div class="form-group col-md-6">
-          <label for="pais">Pais</label>
-          <select name="pais" placeholder="Pais" class="form-control" value="{{ old('pais') }}">
+          <label class = "text" for="pais">Pais</label>
+          <select name="pais" placeholder="Pais" class="form-control form-gape" value="{{ old('pais') }}">
           <option  value="" selected disabled>Seleccione un Pais</option>
             <option>pais1</option>
             <option>pais2</option>   
-</select>
+          </select>
         </div>
-        
+
         <div class="form-group col-md-6">
-          <label for="ciudad">Ciudad</label>
-          <select  name="ciudad" placeholder="Ciudad" class="form-control" value="{{ old('ciudad') }}">
+          <label class = "text" for="ciudad">Ciudad</label>
+          <select  name="ciudad" placeholder="Ciudad" class="form-control form-gape" value="{{ old('ciudad') }}">
           <option  value="" selected disabled>Seleccione una Ciudad</option>
             <option>ciudad1</option>
             <option>ciudad2</option>    
-        </select>
-           
-
-        </div>
-        <div class="form-group col-md-6">
-          <label for="tipo">Tipo</label>
-           <select name="tipo" placeholder="tipo" class="form-control"  value="{{ old('tipo') }}">
-           <option  value="" selected disabled>Seleccione un Tipo</option>
-            <option>Publica</option>
-            <option>Privada</option>       
           </select>
         </div>
+
+        <div class="form-group col-md-6">
+          <label class = "text" for="tipo">Tipo</label>
+          <div class="row">
+
+          <div class="form-check col-md-5" style="margin-left:10px">
+            <input class="form-check-input" type="radio" name="radioType" id="type1" value="{{ old('tipo') }}">
+            <label class="form-check-label text" for="type1">Privada</label>
+          </div>
+
+          <div class="form-check col-md-6">
+            <input class="form-check-input radio-butn" type="radio" name="radioType" id="type2" value="{{ old('tipo') }}">
+            <label class="form-check-label text" for="type2">Pública</label>
+          </div>
+
+          </div>
+          <br>
+          <button class="btn-form" type="submit" style = "margin:10px; margin-left:127px">Agregar</button> 
+        </div>
+        
         @foreach($columnas as $key=>$column)
         <div class="form-group col-md-6">
           <label for="{{$column->nombre}}">{{$column->nombre}}</label>
@@ -68,38 +82,33 @@
               
         </div>
         @endforeach
-        <br>
-        <br>
-        <br>
-        <button class="btn btn-primary btn-block" typw="submit">Agregar</button> 
+      
       </div>
     </form>
     
-    <br>
-    <br>
-    <div class="table-responsive">
-    <table class="table">
-  <thead>
+<div class="table-responsive">
+
+  <table class="table">
+
+    <thead class="text" style="background:#B0C4D9">
+
     <tr>
       <th scope="col">#Id</th>
       <th scope="col">Nombre Institucion</th>
       <th scope="col">Pais</th>
       <th scope="col">Ciudad</th>
       <th scope="col">Tipo</th>
-      
-      
-      
       @foreach($columnas as $column)
       <th scope="col">{{$column->nombre}}&nbsp
       @can('add')  
-      <button class="btn btn-danger" data-toggle="modal" data-target="#modaleliminar{{ $column->id }}">-</button></th>
+      <button class="btn btn-danger" data-toggle="modal" data-target="#modaleliminar{{ $column->id }}">-</button>
+    </th>
      @endcan
       <div class="modal fade" id="modaleliminar{{$column->id}}" tabindex="-1" role="dialog" aria-labelledby="modaleliminarLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="modaleliminarlLabel">Eliminar Columna</h5>
-    
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -109,28 +118,20 @@
                 @method('DELETE')
                 @csrf
                 <p> Estas seguro que deseas eliminar esta columna ?</p>
-          
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button  class="btn btn-danger" type="submit">Eliminar Columna</button>
               </form>
             </div>
           <div class="modal-footer">
-          </div>
         </div>
       </div>
-  </div>
-  
       @endforeach
-      
       <th scope="col">Acciones</th>
       @can('add')
-      <th scope="col"><button class="btn btn-block bg-gradient-primary" typw="" data-toggle="modal" data-target="#exampleModal">+</button></th>
-      @endcan
-      
-                
+      <th scope="col"><button class="btn btn-block" typw="" data-toggle="modal" data-target="#exampleModal" style="background:#486A8C;color:#EFE6E6; font-size: 18px;">+</button></th>
+      @endcan 
     </tr>
   </thead>
-  </div>
   <tbody>
       @foreach($instituciones as $item)
     <tr>
@@ -141,12 +142,19 @@
       <td>{{$item->tipo}}</td>
       
       <td>
-        <a href="{{ route('institucion.editar', $item) }}" class="btn btn-warning btn-sm">Editar</a>
-        
+      <a href="{{ route('institucion.editar', $item) }}" class="btn" style="background: #486A8C;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
+            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+          </svg>
+        </a>
         <form action="{{ route('institucion.eliminar', $item)}}" method="POST" class="d-inline">
         @method('DELETE')  
         @csrf
-          <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+        <button class="btn" style="background: #486A8C;" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
+              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+            </svg>
+          </button>
         </form>
       </td>
     </tr>
@@ -160,7 +168,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Columna</h5>
+        <h5 class="modal-title text" style="font-size:20px" id="exampleModalLabel">Agregar columna</h5>
     
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -169,11 +177,12 @@
       <div class="modal-body">
           <form action="{{ route('columna') }}" method="POST">
           @csrf
-          <label for="name">Nombre Columna</label>
-          <input type="text" name="nombre" placeholder="Nombre Columna" class="form-control" value="" >
+          <label for="name" class = "text">Nombre Columna</label>
+          <input type="text" name="nombre" placeholder="Nombre Columna" class="form-control form-gape" value="" >
           <input type="text" name="tipo_columnas"  value="instituciones" hidden>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button  class="btn btn-primary" type="submit">Save changes</button>
+          <br>
+          <button type="button" class="btn btn-secondary" style = "border-radius:10px" data-dismiss="modal">Close</button>
+          <button  class="btn" type="submit"style="background:#486A8C;color:#EFE6E6; font-size: 18px; border-radius:10px">Save changes</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -182,7 +191,7 @@
   </div>
 </div>
 
-<h1>Programa</h1>
+<h1 class="tittle">Programa</h1>
 @error('nombre')
           <div class="alert alert-danger">
             El Nombre es obligatorio
@@ -197,56 +206,50 @@
         <form action="{{ route('programa.crear') }}" method="POST">     
         @csrf
 
-      <div class="row">
-      <div class="form-group">
-    <label for="nombre">Nombre Programas</label>
-    <textarea class="form-control" id="nombre" value="{{ old('nombre') }}" rows="3"></textarea>
-  </div>
+    <div class="row card-form" style = "height: 40VH">
+
+        <div class="form-group col-md-6">
+          <label for="nombre" class = "text" >Nombre Programas</label>
+          <textarea class="form-control" id="nombre" value="{{ old('nombre') }}" rows="3"></textarea>
+        </div>
         
         <div class="form-group col-md-6">
-          <label for="institucion_id">Institucion</label>
-          <select name="institucion_id" placeholder="Institucion" class="form-control" value="{{ old('institucion_id') }}">
-          <option  value="" selected disabled>Seleccione una Institucion</option>
+          <label for="institucion_id" class = "text" >Institucion</label>
+          <select name="institucion_id" placeholder="Institucion" class="form-control form-gape" value="{{ old('institucion_id') }}">
+            <option  value="" selected disabled>Seleccione una Institucion</option>
             <option>Institucion1</option>
             <option>Institucion2</option>   
-</select>
+          </select>
         </div>
         
         @foreach($columnas as $key=>$column)
         <div class="form-group col-md-6">
-          <label for="{{$column->nombre}}">{{$column->nombre}}</label>
-          <input type="text" name="columnas[{{$column->id}}]" class="form-control" value="" >
-              
+          <label for="{{$column->nombre}}" class = "text" >{{$column->nombre}}</label>
+          <input type="text" name="columnas[{{$column->id}}]" class="form-control form-gape" value="" >  
         </div>
         @endforeach
-        <br>
-        <br>
-        <br>
-        <button class="btn btn-primary btn-block" typw="submit">Agregar</button> 
+        <button class="btn-form" type="submit" style = "margin:10px; margin-left:627px">Agregar</button> 
       </div>
     </form>
-    
-    <br>
-    <br>
+  
     <div class="table-responsive">
     <table class="table">
-  <thead>
+    <thead class="text" style="background:#B0C4D9">
     <tr>
       <th scope="col">#Id</th>
       <th scope="col">Nombre Programa</th>
       <th scope="col">Institucion</th>
       
-      
-      
-      
       @foreach($columnas as $column)
       <th scope="col">{{$column->nombre}}&nbsp
       @can('add')  
-      <button class="btn btn-danger" data-toggle="modal" data-target="#modaleliminar{{ $column->id }}">-</button></th>
+      <button class="btn btn-danger" data-toggle="modal" data-target="#modaleliminar{{ $column->id }}">-</button>
+    </th>
      @endcan
       <div class="modal fade" id="modaleliminar{{$column->id}}" tabindex="-1" role="dialog" aria-labelledby="modaleliminarLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
+
             <div class="modal-header">
               <h5 class="modal-title" id="modaleliminarlLabel">Eliminar Columna</h5>
     
@@ -254,6 +257,7 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="modal-body">
               <form action="{{ route('columna.eliminarcol', $column->id) }}" method="POST">
                 @method('DELETE')
@@ -264,20 +268,17 @@
                   <button  class="btn btn-danger" type="submit">Eliminar Columna</button>
               </form>
             </div>
+
           <div class="modal-footer">
-          </div>
         </div>
       </div>
-  </div>
   
       @endforeach
       
       <th scope="col">Acciones</th>
       @can('add')
-      <th scope="col"><button class="btn btn-block bg-gradient-primary" typw="" data-toggle="modal" data-target="#exampleModal">+</button></th>
-      @endcan
-      
-                
+      <th scope="col"><button class="btn btn-block" typw="" data-toggle="modal" data-target="#exampleModal" style="background:#486A8C;color:#EFE6E6; font-size: 18px;">+</button></th>
+      @endcan      
     </tr>
   </thead>
   </div>
@@ -290,12 +291,19 @@
       
       
       <td>
-        <a href="{{ route('programa.editar', $item) }}" class="btn btn-warning btn-sm">Editar</a>
-        
+      <a href="{{ route('programa.editar', $item) }}" class="btn" style="background: #486A8C;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
+            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+          </svg>
+        </a>
         <form action="{{ route('programa.eliminar', $item)}}" method="POST" class="d-inline">
         @method('DELETE')  
         @csrf
-          <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+        <button class="btn" style="background: #486A8C;" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
+              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+            </svg>
+          </button>
         </form>
       </td>
     </tr>
@@ -318,11 +326,12 @@
       <div class="modal-body">
           <form action="{{ route('columna') }}" method="POST">
           @csrf
-          <label for="name">Nombre Columna</label>
-          <input type="text" name="nombre" placeholder="Nombre Columna" class="form-control" value="" >
+          <label for="name" class = "text">Nombre Columna</label>
+          <input type="text" name="nombre" placeholder="Nombre Columna" class="form-control form-gape" value="" >
           <input type="text" name="tipo_columnas"  value="instituciones" hidden>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button  class="btn btn-primary" type="submit">Save changes</button>
+          <br>
+          <button type="button" class="btn btn-secondary" style = "border-radius:10px" data-dismiss="modal">Close</button>
+          <button  class="btn" type="submit"style="background:#486A8C;color:#EFE6E6; font-size: 18px; border-radius:10px">Save changes</button>
           </form>
         </div>
         <div class="modal-footer">
