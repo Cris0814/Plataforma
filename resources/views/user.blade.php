@@ -2,12 +2,12 @@
 <!-- @extends('plantilla') -->
 
 @section('seccion')
-<h1>Usuario Docente</h1>
+<h1 class = "tittle">Usuario Docente</h1>
 
 
 <div class="table-responsive">
   <table class="table">
-    <thead>
+  <thead class="text" style="background:#B0C4D9">
       <tr>
         <th scope="col">#Id</th>
         <th scope="col">Nombre</th>
@@ -32,8 +32,25 @@
         <td>{{$item->email}}</td>
         <td>{{$item->edad}}</td>
            
-        <td>{{$item->institucion}}</td>
-        <td>{{$item->programa}}</td>
+        @if($item->institucion == 0)  
+      <td></td>
+      @else
+      @foreach($instituciones as $institucion)
+      @if($institucion->id==$item->institucion)
+      <td>{{$institucion->nombre}}</td>
+      @endif()  
+      @endforeach()  
+      @endif()  
+
+      @if($item->programa == 0)  
+      <td></td>
+      @else
+      @foreach($programas as $programa)
+      @if($programa->id==$item->programa)
+      <td>{{$programa->nombre}}</td>
+      @endif()  
+      @endforeach()  
+      @endif() 
         <td>{{$item->asignatura}}</td>
         <td>{{$item->num_estudiante}}</td>
         <td>{{$item->num_m}}</td>

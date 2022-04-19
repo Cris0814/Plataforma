@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App;
+use App\Http\Request\DocenteRequest;
+use App\User;
+use App\Pais;
+use App\Ciudad;
+use Auth;
+use Illuminate\Support\Facades\Hash;
+
+use App\Exports\UserExport;
 // use Auth;
 class AdminController extends Controller
 {
@@ -14,7 +22,10 @@ class AdminController extends Controller
         // // dd($users);
         // return view('Admin',['admins' => $admins]);
         $admins = App\Admin::all();
-        return view('admin', compact('admins'));
+        $ciudades = App\Ciudad::all();
+        $instituciones = App\Instituciones::all();
+        return view('admin')
+        ->with(compact('admins','ciudades','instituciones'));
     }
 // para crear administrador
     public function crear(Request $request){
@@ -44,12 +55,18 @@ class AdminController extends Controller
        $userNuevo->assignRole('admin');
        
        return back()->with('mensaje','Admin Agregado');
-
+       
     }
 
     public function editar($id){
-        $admins = App\Admin::findOrFail($id);
-        return view('editarAdmin', compact('admins'));
+        $users = App\User::findOrFail($id);
+        $instituciones = App\Instituciones::all();
+        $paises = App\Pais::all();
+        
+        
+        // dd($instituciones);
+        return view('editarAdmin')
+        ->with(compact('users', 'instituciones','paises'));
     }
 
     public function update(Request $request, $id){
@@ -74,5 +91,15 @@ class AdminController extends Controller
         $adminEliminar->delete();
 
         return back()->with('mensaje', 'Admin Eliminado');
+    }
+
+    public function getCiudad(Request $request, $id){
+        if($request->ajax()){
+            $ciudades = Ciudad::ciudades($id);
+            return response()->json($ciudades);
+        }
+    } 
+    public function byPais($id){
+        return Ciudad::where('pais_id', $id)->get();
     }
 }

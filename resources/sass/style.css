@@ -66,7 +66,7 @@
 
 .progress {
     background: #EFE6E6;
-    height: 37px;
+    height: 35px;
     border-radius: 12px;
     margin-left: 7px;
     border: 2px solid rgba(114, 127, 140, 0.8);
@@ -81,58 +81,6 @@
     border-radius: 10px;
 }
 
-.progress-bar>div {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 0px;
-    background-color: #486A8C;
-    z-index: -1;
-}
-
-
-/* .progress-bar>span {
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-}
-
-.progress-bar>span.center {
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.progress-bar>span.right {
-    left: calc(100% - 50px);
-} */
-
-#slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 7px;
-    outline: none;
-    border-radius: 3px;
-}
-
-#slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 48px;
-    height: 48px;
-    cursor: pointer;
-    z-index: 3;
-    position: relative;
-}
-
-#selector {
-    width: 48px;
-    height: 104px;
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-}
-
 .selectButn {
     width: 48px;
     height: 48px;
@@ -144,25 +92,41 @@
     bottom: 0;
 }
 
-#SelecValue {
-    width: 48px;
-    height: 40px;
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
     background: #486A8C;
-    text-align: center;
-    border-radius: 4px;
-    top: 0;
-    position: absolute;
-    line-height: 45px;
-    font-size: 20px;
-    font-weight: bold;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
 }
 
-#SelectValue::after {
-    content: '';
-    border-top: 17px solid #486A8C;
-    border-left: 24px solid #000;
-    border-right: 24px solid #000;
-    position: absolute;
-    bottom: -14px;
-    left: 0;
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 11px 8px rgba(0, 0, 0, 0.26);
+    background: #486A8C;
+    background-size: 45%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slider::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #486A8C;
+    background-size: 45%;
+    background-position: center;
+    background-repeat: no-repeat;
 }

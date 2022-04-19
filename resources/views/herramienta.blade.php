@@ -174,21 +174,23 @@
         </div>
         <div class="form-group col-md-6">
           <label for="porcentaje_aprove">Porcentaje de Aprovechamiento</label>
-           <select name="porcentaje_aprove" class="form-control" id="porcentaje_aprove" value="{{ old('porcentaje_aprove') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >0</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-            <option >6</option>
-            <option >7</option>
-            <option >8</option>
-            <option >9</option>
-            <option >10</option>
-           
-          </select>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+           <input type="number" min="0" max="100" value="0" class="form-control" id="porcentaje_aprove" value="{{ old('porcentaje_aprove') }}">
+           <script>
+             function addListenerMulti(element, events, listener) {
+               events.forEach(el => {
+                element.addEventListener(el, listener, false);
+              });
+             }
+
+            addListenerMulti(document.querySelector("input[type=number]"), ["change", "click", "keyup"], setWith)
+            function setWith(e) {
+              document.querySelector(".progress-bar div").style.width = valor + "%";
+              document.querySelector(".miBarra span").innerHTML = valor + "%";
+          }
+           </script>
         </div>
         <div class="form-group col-md-6">
           <label for="porcentaje_aproba">Porcentaje de Aprobacion</label>

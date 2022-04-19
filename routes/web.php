@@ -23,6 +23,8 @@ Route::put('/editarUser/{id}', 'UserController@update')->name('user.update');
 Route::delete('eliminar/{id}', 'UserController@eliminar')->name('user.eliminar'); 
 
 Route::get('admin', 'UserController@admin')->name('admin')->middleware('auth');
+Route::get('admin','UserController@admin')->name('admin');
+// Route::get('ciudad/{id}','UserController@getCiudad')->name('admin');
 // Route::post('admin', 'AdminController@crear')->name('admin.crear');
 Route::get('/editarAdmin/{id}', 'AdminController@editar')->name('admin.editar');
 Route::put('/editarAdmin/{id}', 'AdminController@update')->name('admin.update');
@@ -88,3 +90,35 @@ Route::get('/', function () {
     return view('auth.login');
 });
 Route::get('/excel', 'HomeController@excel')->name('home.excel');
+
+Route::get('tipo_estra', 'TipoEstraController@tipo_estra')->name('tipo_estra');
+Route::post('tipo_estra', 'TipoEstraController@crear')->name('tipo_estra.crear');
+Route::post('columna-store/', 'ColumnaController@store')->name('columna');
+Route::delete('columna-eliminar/{id}', 'ColumnaController@eliminarcol')->name('columna.eliminarcol');
+Route::get('/editarTipo_estra/{id}', 'TipoEstraController@editar')->name('tipo_estra.editar');
+Route::put('/editarTipo_estra/{id}', 'TipoEstraController@update')->name('tipo_estra.update');
+Route::delete('eliminarTipo_estra/{id}', 'TipoEstraController@eliminar')->name('tipo_estra.eliminar');
+
+Route::get('estra', 'EstraController@estra')->name('estra');
+Route::post('estra', 'EstraController@crear')->name('estra.crear');
+Route::post('columna-store/', 'ColumnaController@store')->name('columna');
+Route::delete('columna-eliminar/{id}', 'ColumnaController@eliminarcol')->name('columna.eliminarcol');
+Route::get('/editarEstra/{id}', 'EstraController@editar')->name('estra.editar');
+Route::put('/editarEstra/{id}', 'EstraController@update')->name('estra.update');
+Route::delete('eliminarEstra/{id}', 'EstraController@eliminar')->name('estra.eliminar'); 
+
+Route::get('tipo_herra', 'TipoHerraController@tipo_herra')->name('tipo_herra');
+Route::post('tipo_herra', 'TipoHerraController@crear')->name('tipo_herra.crear');
+Route::post('columna-store/', 'ColumnaController@store')->name('columna');
+Route::delete('columna-eliminar/{id}', 'ColumnaController@eliminarcol')->name('columna.eliminarcol');
+Route::get('/editarTipo_herra/{id}', 'TipoHerraController@editar')->name('tipo_herra.editar');
+Route::put('/editarTipo_herra/{id}', 'TipoHerraController@update')->name('tipo_herra.update');
+Route::delete('eliminarTipo_herra/{id}', 'TipoHerraController@eliminar')->name('tipo_herra.eliminar');
+
+Route::get('herra', 'HerraController@herra')->name('herra');
+Route::post('herra', 'HerraController@crear')->name('herra.crear');
+Route::post('columna-store/', 'ColumnaController@store')->name('columna');
+Route::delete('columna-eliminar/{id}', 'ColumnaController@eliminarcol')->name('columna.eliminarcol');
+Route::get('/editarHerra/{id}', 'HerraController@editar')->name('herra.editar');
+Route::put('/editarHerra/{id}', 'HerraController@update')->name('herra.update');
+Route::delete('eliminarHerra/{id}', 'HerraController@eliminar')->name('herra.eliminar'); 

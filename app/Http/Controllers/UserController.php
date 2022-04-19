@@ -8,6 +8,8 @@ use App;
 use App\User;
 use App\Institucion;
 use App\Programa;
+use App\Pais;
+use App\Ciudad;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -37,9 +39,19 @@ class UserController extends Controller
         // return view('Admin',['admins' => $admins]);
         //$admins = User::all();
         $admins = User::where('is_admin', true)->get();
+        $paises = Pais::all();
+        $ciudades = Ciudad::all();
+        $instituciones = App\Instituciones::all();
         
-        return view('admin', compact('admins'));
+        return view('admin', compact('admins','paises','ciudades','instituciones'));
     }
+
+    public function getCiudad(Request $request, $id){
+        if($request->ajax()){
+            $ciudades = Ciudad::ciudades($id);
+            return response()->json($ciudades);
+        }
+    }    
 // para crear Docente
     public function crear(Request $request){
         

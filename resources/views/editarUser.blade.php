@@ -81,7 +81,7 @@
           <label class = "text" for="institucion">Institucion</label>
           
           <select name="institucion" class="form-control form-gape" id="select-institucion" value="{{ $users->institucion }}">
-          <option value="" selected disabled>Seleccione una Institucion</option>
+          <option value="" selected disabled>{{ $users->institucion }}</option>
 
                 @foreach($instituciones as $institucion)
                     <option value="{{ $institucion->id}}" >
@@ -103,7 +103,7 @@
         <div class="form-group col-md-6">
           <label class = "text" for="edad">Edad</label>
            <select name="edad" class="form-control form-gape" id="edad" value="{{ $users->edad }}">
-            <option value="" selected disabled>Seleccione una opción</option>
+            <option value="" selected disabled>{{ $users->edad }}</option>
             <option >18</option>
             <option >19</option>
             <option >20</option>
@@ -177,7 +177,7 @@
         <div class="form-group col-md-6">
           <label class = "text" for="num_estudiante">Numero de estudiantes</label>
           <select name="num_estudiante" class="form-control form-gape" id="num_estudiante" value="{{ $users->num_estudiante }}">
-            <option value="" selected disabled>Seleccione una opción</option>
+            <option value="" selected disabled>{{ $users->num_estudiante }}</option>
             <option >10-20</option>
             <option >21-30</option>
             <option >31-40</option>
@@ -200,7 +200,7 @@
         <div class="form-group col-md-6">
           <label class = "text" for="semestre">Semestre</label>
           <select name="semestre" class="form-control form-gape" id="semestre" value="{{ $users->semestre }}">
-            <option value="" selected disabled>Seleccione una opción</option>
+            <option value="" selected disabled>{{ $users->semestre }}</option>
             <option >I</option>
             <option >II</option>
             <option >III</option>
@@ -216,7 +216,7 @@
         <div class="form-group col-md-6">
           <label class = "text" for="modalidad">Modalidad</label>
           <select name="modalidad" class="form-control form-gape" id="modalidad" value="{{ $users->modalidad }}">
-            <option value="" selected disabled>Seleccione una opción</option>
+            <option value="" selected disabled>{{ $users->modalidad }}</option>
             <option >Virtual</option>
             <option >A distancia</option>
             <option >Presencial</option>

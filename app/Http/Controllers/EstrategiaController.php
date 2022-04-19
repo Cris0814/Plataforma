@@ -13,6 +13,12 @@ use App\Estrategia;
 use App\Herramienta;
 use Auth;
 use App\User;
+use App\Instituciones;
+use App\Programa;
+use App\Estra;
+use App\Herra;
+use App\Tipo_Estras;
+use App\Tipo_Herras;
 use App\Exports\UserExport;
 
 class EstrategiaController extends Controller
@@ -20,7 +26,13 @@ class EstrategiaController extends Controller
 
     public function estrategia(){
         $estrategias = App\Estrategia::all();
+        $instituciones = App\Instituciones::all();
+        $programas = App\Programa::all();
         $herramientas = App\Herramienta::all();
+        $tipo_estras = App\Tipo_Estras::all();
+        $tipo_herras = App\Tipo_Herras::all();
+        $estras = App\Estra::all();
+        $herras = App\Herra::all();
         $auth = Auth::user()->id;
         
         if (Auth::user()->getRoleNames() == '["admin"]'){
@@ -32,7 +44,7 @@ class EstrategiaController extends Controller
 
         $columnas = Columna::where('tipo_columnas', 'estrategias')->get();
 
-        return view('estrategia', compact('estrategias','herramientas','users','columnas'));
+        return view('estrategia', compact('estrategias','herramientas','users','columnas','tipo_estras','tipo_herras','estras','herras','instituciones','programas'));
     }
 
     public function crear(EstrategiaRequest $request){
@@ -57,7 +69,11 @@ class EstrategiaController extends Controller
 
     public function editar($id){
         $estrategias = App\Estrategia::findOrFail($id);
-        return view('editarEstrategia', compact('estrategias'));
+        $tipo_estras = App\Tipo_Estras::all();
+        $tipo_herras = App\Tipo_Herras::all();
+        $estras = App\Estra::all();
+        $herras = App\Herra::all();
+        return view('editarEstrategia', compact('estrategias','tipo_estras','tipo_herras','estras','herras'));
     }
 
     public function update(Request $request, $id){
@@ -86,6 +102,10 @@ class EstrategiaController extends Controller
         return back()->with('mensaje','Estrategia Eliminada');
     }
 
-
-    
+    public function byEstra($id){
+        return Estra::where('tipo_estra_id', $id)->get();
+    }
+    public function byHerra($id){
+        return Herra::where('tipo_herra_id', $id)->get();
+    }
 }

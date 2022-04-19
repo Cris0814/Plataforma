@@ -1,34 +1,30 @@
 @extends('plantilla')
 
 @section('seccion')
-<h1>Editar Estrategia{{ $estrategias->id}}</h1>
+<h1 class = "tittle">Editar Estrategia{{ $estrategias->id}}</h1>
+<style>
+<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+</style>
+@error('tipo_estra')
+          <div class="alert alert-danger">
+            El Tipo de la Estrategia es obligatorio
+          </div>
+        @enderror
 @error('nom_estra')
           <div class="alert alert-danger">
             El Nombre de la Estrategia es obligatorio
           </div>
         @enderror
 
-        @error('estra_apren_interactivo')
+        @error('tipo_herra')
           <div class="alert alert-danger">
-            La Estrategia de Aprendizaje Interactivo es obligatoria
+            El tipo de Herramienta es obligatorio
           </div>
         @enderror
 
-        @error('estra_apren_colabo')
+        @error('nom_herra')
           <div class="alert alert-danger">
-            La Estrategia de Aprendizaje Colaborativo es obligatoria
-          </div>
-        @enderror
-
-        @error('estra_autoapren')
-          <div class="alert alert-danger">
-            La Estrategia de Autoaprendizaje es obligatorio
-          </div>
-        @enderror
-
-        @error('estra_didactica')
-          <div class="alert alert-danger">
-            La Estrategia didactica es obligatoria
+            El Nombre de la Herramientas es obligatorio
           </div>
         @enderror
 
@@ -40,7 +36,7 @@
         
         @error('estra_evaluacion')
           <div class="alert alert-danger">
-            La Estrategia de Aprendizaje Colaborativo es obligatoria
+            La Estrategia de evaluacion es obligatoria
           </div>
         @enderror
 
@@ -60,82 +56,49 @@
         @method('PUT')
       @csrf
       <div class="row">
+      <div class="row card-form" style = "height: 70VH">
       <div class="form-group col-md-6">
-          <label for="nom_estra">Nombre Estrategia</label>
-          <select name="nom_estra" class="form-control" id="nom_estra" value="{{ old('nom_estra') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Estrategia de aprendizaje interactivo</option>
-            <option >Estrategia de aprendizaje colaborativo</option>
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="estra_apren_interactivo">Estrategia de Aprendizaje Interactivo</label>
-          <select name="estra_apren_interactivo" class="form-control" id="estra_apren_interactivo" value="{{ old('estra_apren_interactivo') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Clase Magistral</option>
-            <option >Analisis de videos</option>
-            <option >Analisis de imagenes</option>
-            <option >Seminario</option>
-            <option >Exposiciones</option>
-            <option >Socializacion y debates</option>
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="estra_apren_colabo">Estrategia de aprendizaje colaborativo</label>
-           <select name="estra_apren_colabo" class="form-control" id="estra_apren_colabo" value="{{ old('estra_apren_colabo') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Aprendizaje basado en problemas</option>
-            <option >Aprendizaje basado en proyectos</option>
-            <option >Analisis y discusion grupal</option>
-            <option >Dialogo problematizador y reflexivo</option>
-            <option >Taller practicos y analisis de casos</option>
-            <option >Socializacion de producciones grupales</option>
+          <label class = "text" for="tipo_estra">Tipo Estrategia</label>
+          <select name="tipo_estra" class="form-control form-gape" id="select-tipo_estra" value="{{ old('tipo_estra') }}">
+          <option value="" selected disabled>Seleccione un Tipo de Estrategia</option>
+
+                @foreach($tipo_estras as $tipo_estra)
+                    <option value="{{ $tipo_estra->id}}" >
+                        {{$tipo_estra->nombre}}
+                    </option>
+                @endforeach
+
             </select>
-        </div>
+</div>
+<div class="form-group col-md-6">
+          <label class = "text" for="">Estrategia</label>
+          <select name="nom_estra" class="form-control form-gape" id="select-estra" value="{{ old('nom_estra') }}">
+           </select>
+           
+</option>
+</div>
         <div class="form-group col-md-6">
-          <label for="estra_autoapren">Estrategia de Autoaprendizaje</label>
-           <select name="estra_autoapren" class="form-control" id="estra_autoapren" value="{{ old('estra_autoapren') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Lecturas independientes</option>
-            <option >Indagacion y analisis de informacion</option>
-            <option >Elaboracion de ensayos</option>
-            <option >Trabajos individuales</option>
-            <option >Desarrollo de proyectos</option>
+         <label class="text" for="valoracion_estra">Valoracion general de la estrategia</label>
+           <select name="valoracion_estra" class="form-control form-gape" id="valoracion_estra" value="{{ old('valoracion_estra') }}">
+            <option value="" selected disabled>{{ $estrategias->valoracion_estra }}</option>
+            <option >0</option>
+            <option >1</option>
+            <option >2</option>
+            <option >3</option>
+            <option >4</option>
+            <option >5</option>
+            <option >6</option>
+            <option >7</option>
+            <option >8</option>
+            <option >9</option>
+            <option >10</option>
            
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="estra_didactica">Estrategia Didactica</label>
-           <select name="estra_didactica" class="form-control" id="estra_didactica" value="{{ old('estra_didactica') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Estudio de caso</option>
-            <option >Resolucion de problemas</option>
-            <option >Trabajo por proyectos</option>
-            <option >Gamificacion y videojuegos educativos</option>
-            <option >Clase invertida (Flipped - Clasroom)</option>
-            <option >Role Playing</option>
-            <option >Trabajo de investigacion</option>
-            <option >Panel</option>
-            <option >Simulacion</option>
-            <option >Debate</option>
-           
-          </select>
-        </div>
-        
-        <div class="form-group col-md-6">
-          <label for="compete_evaluar">Competencias a evaluar</label>
-          <select name="compete_evaluar" class="form-control" id="compete_evaluar" value="{{ old('compete_evaluar') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Cognitivo</option>
-            <option >Procedimental</option>
-            <option >Actitudinal</option>
-          </select>
-        </div>
-        
-        <div class="form-group col-md-6">
-          <label for="estra_evaluacion">Estrategia de Evaluacion</label>
-          <select name="estra_evaluacion" class="form-control" id="estra_evaluacion" value="{{ old('estra_evaluacion') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
+         <label class="text" for="estra_evaluacion">Estrategia de Evaluacion</label>
+          <select name="estra_evaluacion" class="form-control form-gape" id="estra_evaluacion" value="{{ old('estra_evaluacion') }}">
+            <option value="" selected disabled>{{ $estrategias->estra_evaluacion }}</option>
             <option >Poster</option>
             <option >Examenes Escritos</option>
             <option >Portafolio de evidencias</option>
@@ -154,31 +117,43 @@
             <option >Construccion de Video</option>
           </select>
         </div>
-
         
         <div class="form-group col-md-6">
-          <label for="valoracion_estra">Valoracion general de la estrategia</label>
-           <select name="valoracion_estra" class="form-control" id="valoracion_estra" value="{{ old('valoracion_estra') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >0</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-            <option >6</option>
-            <option >7</option>
-            <option >8</option>
-            <option >9</option>
-            <option >10</option>
-           
+         <label class="text" for="compete_evaluar">Competencias a evaluar</label>
+          <select name="compete_evaluar" class="form-control form-gape" id="compete_evaluar" value="{{ old('compete_evaluar') }}">
+            <option value="" selected disabled>{{ $estrategias->compete_evaluar }}</option>
+            <option >Cognitivo</option>
+            <option >Procedimental</option>
+            <option >Actitudinal</option>
           </select>
         </div>
+        <div class="form-group col-md-6">
+         <label class="text" for="tipo_herra">Tipo de Herramienta</label>
+         <select name="tipo_herra" class="form-control form-gape" id="select-tipo_herra" value="{{ old('tipo_herra') }}">
+          <option value="" selected disabled>Seleccione un Tipo de Herramienta</option>
+
+                @foreach($tipo_herras as $tipo_herra)
+                    <option value="{{ $tipo_herra->id}}" >
+                        {{$tipo_herra->nombre}}
+                    </option>
+                @endforeach
+
+            </select>
+</div>
+<div class="form-group col-md-6">
+          <label class = "text" for="">Herramienta</label>
+          <select name="nom_herra" class="form-control form-gape" id="select-herra" value="{{ old('nom_herra') }}">
+           </select>
+           
+</option>
+</div>
       
         <br>
         <br>
         <br>
-        <button class="btn btn-warning btn-block" type="submit">Editar</button> 
+        <button class="btn-form" type="submit" style = "margin:10px; margin-left:127px">Editar</button> 
       </div>
     </form>
+    <script src="{{ asset('js/editestra.js')}}" ></script>
+    <script src="{{ asset('js/editherra.js')}}" ></script>
 @endsection

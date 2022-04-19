@@ -34,8 +34,25 @@
         <td>{{$item->email}}</td>
         <td>{{$item->edad}}</td>
            
-        <td>{{$item->institucion}}</td>
-        <td>{{$item->programa}}</td>
+        @if($item->institucion == 0)  
+      <td></td>
+      @else
+      @foreach($instituciones as $institucion)
+      @if($institucion->id==$item->institucion)
+      <td>{{$institucion->nombre}}</td>
+      @endif()  
+      @endforeach()  
+      @endif()  
+
+      @if($item->programa == 0)  
+      <td></td>
+      @else
+      @foreach($programas as $programa)
+      @if($programa->id==$item->programa)
+      <td>{{$programa->nombre}}</td>
+      @endif()  
+      @endforeach()  
+      @endif() 
         <td>{{$item->asignatura}}</td>
         <td>{{$item->num_estudiante}}</td>
         <td>{{$item->num_m}}</td>
@@ -71,7 +88,7 @@
     </tbody>
   </table>
 </div>
-<h1>Estrategia</h1>
+<h1 class = "tittle">Estrategia</h1>
 @error('tipo_estra')
           <div class="alert alert-danger">
             El Tipo de la Estrategia es obligatorio
@@ -115,77 +132,35 @@
         @enderror
       <form action="{{ route('estrategia.crear') }}" method="POST">
       @csrf
-      <div class="row card-form" style = "height: 70VH">
+      <div>
+      
+      
+      </div>
+      <div class="row card-form" style = "height: 90VH">
       <div class="form-group col-md-6">
-         <label class="text" for="tipo_estra">Tipo de Estrategia</label>
-          <select name="tipo_estra" class="form-control form-gape" id="tipo_estra" value="{{ old('tipo_estra') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Estrategia de aprendizaje interactivo</option>
-            <option >Estrategia de aprendizaje colaborativo</option>
-            <option >Estrategia de autoaprendizaje</option>
-            <option >Estrategia de aprendizaje didactica</option>
-            <option >Estrategia de evaluacion</option>
+        
+         <label class="text" for="tipo_estra">Tipo de Estrategia</label> 
+         <a href="{{ route('tipo_estra', $item) }}" class="btn-link" style = "margin-top:35px; margin-left:245px; font-size: 35px;">+</a>
+         
+          
+          <select name="tipo_estra" class="form-control form-gape" id="select-tipo_estra" value="{{ old('tipo_estra') }}">
+          <option value="" selected disabled>Seleccione un Tipo de Estrategia</option>
+
+                @foreach($tipo_estras as $tipo_estra)
+                    <option value="{{ $tipo_estra->id}}" >
+                        {{$tipo_estra->nombre}}
+                    </option>
+                @endforeach
+
+            </select>
+</div>
+<div class="form-group col-md-6">
+          <label class = "text" for="">Estrategia</label>
+          <select name="nom_estra" class="form-control form-gape" id="select-nom_estra" value="{{ old('nom_estra') }}">
+           </select>
            
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="nom_estra">Nombre Estrategia</label>
-          <select name="nom_estra" class="form-control form-gape" id="nom_estra" value="{{ old('nom_estra') }}">
-            <option  value="" selected disabled>Seleccione una opción</option>
-            <option >Clase Magistral</option>
-            <option >Analisis de videos</option>
-            <option >Analisis de imagenes</option>
-            <option >Seminario</option>
-            <option >Exposiciones</option>
-            <option >Socializacion y debates</option>
-            
-
-            <option >Aprendizaje basado en problemas</option>
-            <option >Aprendizaje basado en proyectos</option>
-            <option >Analisis y discusion grupal</option>
-            <option >Dialogo problematizador y reflexivo</option>
-            <option >Taller practicos y analisis de casos</option>
-            <option >Socializacion de producciones grupales</option>
-
-
-            <option >Lecturas independientes</option>
-            <option >Indagacion y analisis de informacion</option>
-            <option >Elaboracion de ensayos</option>
-            <option >Trabajos individuales</option>
-            <option >Desarrollo de proyectos</option>
-
-
-            <option >Estudio de caso</option>
-            <option >Resolucion de problemas</option>
-            <option >Trabajo por proyectos</option>
-            <option >Gamificacion y videojuegos educativos</option>
-            <option >Clase invertida (Flipped - Clasroom)</option>
-            <option >Role Playing</option>
-            <option >Trabajo de investigacion</option>
-            <option >Panel</option>
-            <option >Simulacion</option>
-            <option >Debate</option>
-
-            <option >Poster</option>
-            <option >Examenes Escritos</option>
-            <option >Portafolio de evidencias</option>
-            <option >Examenes practicos</option>
-            <option >Listado de criterios de evaluacion propio</option>
-            <option >Bitacora de reflexion</option>
-            <option >Articulo</option>
-            <option >Proyecto</option>
-            <option >Ensayo</option>
-            <option >Trabajo de investigacion</option>
-            <option >Mapa mental</option>
-            <option >Mapa Conceptual</option>
-            <option >Linea de tiempo</option>
-            <option >Reseña de articulo</option>
-            <option >Potcast</option>
-            <option >Construccion de Video</option>
-
-           
-          </select>
-        </div>
+</option>
+</div>
         <div class="form-group col-md-6">
          <label class="text" for="valoracion_estra">Valoracion general de la estrategia</label>
            <select name="valoracion_estra" class="form-control form-gape" id="valoracion_estra" value="{{ old('valoracion_estra') }}">
@@ -227,6 +202,7 @@
           </select>
         </div>
         
+        
         <div class="form-group col-md-6">
          <label class="text" for="compete_evaluar">Competencias a evaluar</label>
           <select name="compete_evaluar" class="form-control form-gape" id="compete_evaluar" value="{{ old('compete_evaluar') }}">
@@ -238,65 +214,28 @@
         </div>
         <div class="form-group col-md-6">
          <label class="text" for="tipo_herra">Tipo de Herramienta</label>
-          <select name="tipo_herra" class="form-control form-gape" id="tipo_herra" value="{{ old('tipo_herra') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Creacion de video</option>
-            <option >Publicacion de videos videos</option>
-            <option >Visualizacion de videos</option>
-            
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="nom_herra">Nombre de la Herramienta</label>
-           <select name="nom_herra" class="form-control form-gape" id="nom_herra" value="{{ old('nom_herra') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            
-            <option>Microsoft Word</option>
-            <option>Microsoft Excel</option>
-            <option>Microsoft PowerPoint</option>
-            <option>Microsoft Outlook</option>
-            <option>OneNote</option>
-            <option>OneDrive</option>
-            <option>Microsoft Teams</option>
-            <option>Google Calendar</option>
-            <option>Google Drive</option>
-            <option>Google keep</option>
-            <option>Google Task</option>
-            <option>Documentos de Google</option>
-            <option>Hojas de Calculo de Google</option>
-            <option>Presentaciones de Google</option>
-            <option>Google Sites</option>
-            <option>Google Groups</option>
-            <option>Currents</option>
-            <option>Formularios de Google</option>
-            <option>Adobe Reader</option>
-            <option>Nitro Pro</option>
-            <option>Facebook</option>
-            <option>Instagram</option>
-            <option>Twitter</option>
-            <option>Whatsapp</option>
-            <option>Telegram</option>
-            <option>Zoom</option>
-            <option>Google Meet</option>
-            <option>Messenger</option>
-            <option>Oculus</option>
-            <option>WorkPlace</option>
-            <option>Portal</option>
-            <option>Novi</option>
-            <option>Classroom</option>
-            
-            
-            
-            
+         <a href="{{ route('tipo_herra', $item) }}" class="btn-link" style = "margin-top:35px; margin-left:245px; font-size: 35px;">+</a>
+         <select name="tipo_herra" class="form-control form-gape" id="select-tipo_herra" value="{{ old('tipo_herra') }}">
+          <option value="" selected disabled>Seleccione un Tipo de Herramienta</option>
+
+                @foreach($tipo_herras as $tipo_herra)
+                    <option value="{{ $tipo_herra->id}}" >
+                        {{$tipo_herra->nombre}}
+                    </option>
+                @endforeach
+
             </select>
-        </div>
-        
-        
-        
+</div>
+<div class="form-group col-md-6">
+          <label class = "text" for="">Herramienta</label>
+          <select name="nom_herra" class="form-control form-gape" id="select-nom_herra" value="{{ old('nom_herra') }}">
+           </select>
+           
+</option>
+</div>
         
 
-        
-        
+   
         @foreach($columnas as $column)
         <div class="form-group col-md-6">
          <label class="text" for="{{$column->nombre}}">{{$column->nombre}}</label>
@@ -322,8 +261,7 @@
       <th scope="col">Competencias a Evaluar</th>
       <th scope="col">Tipo de Herramienta</th>
       <th scope="col">Nombre de la Herramienta</th>
-      
-      
+  
       
        @can('add')     
       @foreach($columnas as $column)
@@ -367,13 +305,49 @@
       @foreach($estrategias as $item)
     <tr>
       <th scope="row">{{$item->id}}</th>
-      <td>{{$item->tipo_estra}}</td>
-      <td>{{$item->nom_estra}}</td>
+      @if($item->tipo_estra == 0) 
+      <td></td>
+      @else
+      @foreach($tipo_estras as $tipo_estra)
+      @if($tipo_estra->id==$item->tipo_estra)
+      <td>{{$tipo_estra->nombre}}</td>
+      @endif()  
+      @endforeach()  
+      @endif()  
+      
+      @if($item->nom_estra == 0)  
+      <td></td>
+      @else
+      @foreach($estras as $estra)
+      @if($estra->id==$item->nom_estra)
+      <td>{{$estra->nombre}}</td>
+      @endif()  
+      @endforeach()  
+      @endif() 
+      
+      
       <td>{{$item->valoracion_estra}}</td>
       <td>{{$item->estra_evaluacion}}</td>
       <td>{{$item->compete_evaluar}}</td>
-      <td>{{$item->tipo_herra}}</td>
-      <td>{{$item->nom_herra}}</td>
+      @if($item->tipo_herra == 0)  
+      
+      @else
+      @foreach($tipo_herras as $tipo_herra)
+      @if($tipo_herra->id==$item->tipo_herra)
+      <td>{{$tipo_herra->nombre}}</td>
+      @endif()  
+      @endforeach()  
+      @endif()  
+
+      @if($item->nom_herra == 0)  
+      
+      @else
+      @foreach($herras as $herra)
+      @if($herra->id==$item->nom_herra)
+      <td>{{$herra->nombre}}</td>
+      @endif()  
+      @endforeach()  
+      @endif() 
       
       
       
@@ -426,7 +400,7 @@
 </div>
 
 
-<h1>Herramienta</h1>
+<h1 class = "tittle">Herramienta</h1>
 @error('nom_herra')
           <div class="alert alert-danger">
             El Nombre de la Herramienta es obligatorio
@@ -476,166 +450,110 @@
         @enderror
       <form action="{{ route('herramienta.crear') }}" method="POST">
       @csrf
+     
       <div class="row card-form">
+    <div class="form-group col-md-12">
+      <label class = "text" for="nom_herra">Nombre</label>
+      @foreach($estrategias as $estrategia) 
+      <input type="text" name="nom_herra" placeholder="Nombre" class="form-control form-gape" value="{{ $estrategia->nom_herra }}" readonly>
+        
+           @endforeach
       
-      <div class="form-group col-md-6">
-         <label class="text" for="nom_herra">Nombre Herramienta</label>
-          <select name="nom_herra" class="form-control form-gape" id="nom_herra" value="{{ old('nom_herra') }}">
-            <option  value="" selected disabled>Seleccione una opción</option>
-            <option>Microsoft Word</option>
-            <option>Microsoft Excel</option>
-            <option>Microsoft PowerPoint</option>
-            <option>Microsoft Outlook</option>
-            <option>OneNote</option>
-            <option>OneDrive</option>
-            <option>Microsoft Teams</option>
-            <option>Google Calendar</option>
-            <option>Google Drive</option>
-            <option>Google keep</option>
-            <option>Google Task</option>
-            <option>Documentos de Google</option>
-            <option>Hojas de Calculo de Google</option>
-            <option>Presentaciones de Google</option>
-            <option>Google Sites</option>
-            <option>Google Groups</option>
-            <option>Currents</option>
-            <option>Formularios de Google</option>
-            <option>Adobe Reader</option>
-            <option>Nitro Pro</option>
-            <option>Facebook</option>
-            <option>Instagram</option>
-            <option>Twitter</option>
-            <option>Whatsapp</option>
-            <option>Telegram</option>
-            <option>Zoom</option>
-            <option>Google Meet</option>
-            <option>Messenger</option>
-            <option>Oculus</option>
-            <option>WorkPlace</option>
-            <option>Portal</option>
-            <option>Novi</option>
-            <option>Classroom</option>
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="tipo_licencia">Tipo Licencia</label>
-          <select name="tipo_licencia" class="form-control form-gape" id="tipo_licencia" value="{{ old('tipo_licencia') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option>Propietaria</option>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="tipo_licencia" class="text">Tipo Licencia</label>
+      <select name="tipo_licencia" class="form-control form-gape" id="tipo_licencia" value="{{ old('tipo_licencia') }}">
+        <option value="" selected disabled>Seleccione una opción</option>    
+        <option>Propietaria</option>
             <option>Libre</option>
             <option>Hibrida</option>
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="funciones">Portafolio de Funciones</label>
-          <select name="funciones" class="form-control form-gape" id="funciones" value="{{ old('funciones') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="funciones" class="text">Portafolio de Funciones</label>
+        <select name="funciones" class="form-control form-gape" id="funciones" value="{{ old('herramienta') }}">
+          <option value="" selected disabled>Seleccione una opción</option>
             <option>Audio</option>
             <option>Video</option>
             <option >Encuestas</option>
             <option >Tablero</option>
             <option >Video Llamada</option>
             <option >Multimedia</option>
-          </select>
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="interaccion" class="text">Interaccion</label>
+      <div class="row">
+        <div class="col-md-10">
+          <input name="interaccion" type="range" value="0" min="1" max="5" autocomplete="off" class="slider" id="input1">
         </div>
+        <div class="col-md-2 text" id="labelNum1"></div>
+      </div>
+    </div>
 
-        
-        <div class="form-group col-md-6">
-         <label class="text" for="interaccion">Interaccion</label>
-           <select name="interaccion" class="form-control form-gape" id="interaccion" value="{{ old('interaccion') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-           
-          </select>
+    <div class="form-group col-md-6">
+      <label for="diseño" class="text">Diseño</label>
+      <div class="row">
+        <div class="col-md-10">
+          <input name="diseño" type="range" value="0" min="1" max="5" autocomplete="off" class="slider" id="input2">
         </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="diseño">Diseño</label>
-           <select name="diseño" class="form-control form-gape" id="diseño" value="{{ old('diseño') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-           
-          </select>
+        <div class="col-md-2 text" id="labelNum2"></div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+    <label for="usabilidad" class="text">Usabilidad</label>
+      <div class="row">
+        <div class="col-md-10">
+          <input name="usabilidad" type="range" value="0" min="1" max="5" autocomplete="off" class="slider" id="input3">
         </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="usabilidad">Usabilidad</label>
-           <select name="usabilidad" class="form-control form-gape" id="usabilidad" value="{{ old('usabilidad') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-           
-          </select>
+        <div class="col-md-2 text" id="labelNum3"></div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+    <label for="documentacion" class="text">Documentacion</label>
+      <div class="row">
+        <div class="col-md-10">
+          <input name="documentacion" type="range" value="0" min="1" max="5" autocomplete="off" class="slider" id="input4">
         </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="documentacion">Documentacion</label>
-           <select name="documentacion" class="form-control form-gape" id="documentacion" value="{{ old('documentacion') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-           
-          </select>
+        <div class="col-md-2 text" id="labelNum4"></div>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+    <label for="actualizaciones" class="text">Actualizaciones</label>
+      <div class="row">
+        <div class="col-md-10">
+          <input name="actualizaciones" type="range" value="0" min="1" max="5" autocomplete="off" class="slider" id="input5">
         </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="actualizaciones">Actualizaciones</label>
-           <select name="actualizaciones" class="form-control form-gape" id="actualizaciones" value="{{ old('actualizaciones') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-           
-          </select>
+        <div class="col-md-2 text" id="labelNum5"></div>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="porcentaje_aprove" class="text">Porcentaje de aprovechamiento</label>
+      <div class="row">
+        <div class="progress col-md-8">
+          <div class="progress-bar" role="progressbar" id="porcentaje_aprove"></div>
         </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="porcentaje_aprove">Porcentaje de Aprovechamiento</label>
-           <select name="porcentaje_aprove" class="form-control form-gape" id="porcentaje_aprove" value="{{ old('porcentaje_aprove') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >0</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-            <option >6</option>
-            <option >7</option>
-            <option >8</option>
-            <option >9</option>
-            <option >10</option>
-           
-          </select>
+        <div class="col-md-3">
+          <input name="porcentaje_aprove" class="input-number text" type="number" min="0" max="100" value="0" id="input6">
         </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="porcentaje_aproba">Porcentaje de Aprobacion</label>
-           <select name="porcentaje_aproba" class="form-control form-gape" id="porcentaje_aproba" value="{{ old('porcentaje_aproba') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >0</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-            <option >6</option>
-            <option >7</option>
-            <option >8</option>
-            <option >9</option>
-            <option >10</option>
-           
-          </select>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+    <label for="porcentaje_aproba" class="text">Porcentaje de Aprobacion</label>
+      <div class="row">
+        <div class="progress col-md-8">
+          <div class="progress-bar" role="progressbar" id="porcentaje_aproba"></div>
         </div>
+        <div class="col-md-3">
+          <input name="porcentaje_aproba" class="input-number text" type="number" min="0" max="100" value="0" id="input7">
+        </div>
+      </div>
+    </div>
         @foreach($columnas as $key=>$column)
         <div class="form-group col-md-6">
          <label class="text" for="{{$column->nombre}}">{{$column->nombre}}</label>
@@ -644,7 +562,7 @@
         </div>
         @endforeach
         <br>
-          <button class="btn-form" type="submit" style = "margin:10px; margin-left:127px">Agregar</button> 
+          <button class="btn-form" type="submit" style = "margin:10px; margin-left:627px">Agregar</button> 
       </div>
     </form>
     
@@ -710,11 +628,10 @@
   </div>
   <tbody class = "text">
       @foreach($herramientas as $item1)
+      @foreach($estrategias as $item2)
     <tr>
       <th scope="row">{{$item1->id}}</th>
-      @foreach($estrategias as $item3)
-      <td>{{$item3->nom_herra}}</td>
-      @endforeach
+      <td>{{$item2->nom_herra}}</td>
       <td>{{$item1->tipo_licencia}}</td>
       <td>{{$item1->funciones}}</td>
       <td>{{$item1->interaccion}}</td>
@@ -741,6 +658,7 @@
         </form>
       </td>
     </tr>
+    @endforeach
     @endforeach
   </tbody>
 </table>
@@ -772,5 +690,10 @@
     </div>
   </div>
 </div>
+<script src="{{ asset('js/herra.js')}}" ></script>
+<script src="{{ asset('js/estra.js')}}" ></script>
 
+<script>
+  <?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\views\script.js'; ?>
+</script>
 @endsection

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEstrasTable extends Migration
+class CreateCiudadesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateEstrasTable extends Migration
      */
     public function up()
     {
-        Schema::create('estras', function (Blueprint $table) {
+        Schema::create('ciudades', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('nombre',100);
-            $table->unsignedBigInteger('tipo_estra_id');
-            $table->foreign('tipo_estra_id')->references('id')->on('tipo_estras');
+            $table->char('nombre',70);
+            $table->unsignedBigInteger('pais_id');
+            $table->char('ciudaddistrito',20);
+            $table->integer('ciudadpoblacion');
+            $table->foreign('pais_id')->references('id')->on('paises');
+
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateEstrasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estras');
+        Schema::dropIfExists('ciudades');
     }
 }

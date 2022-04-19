@@ -1,8 +1,15 @@
 @extends('plantilla')
 
 @section('seccion')
-<h1>Editar Herramienta{{ $herramientas->id}}</h1>
-
+<!DOCTYPE html>
+<html>
+<head>
+<h1 class = "tittle">Editar Herramienta{{ $herramientas->id}}</h1>
+<style>
+<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+</style>
+</head>
+<body>
 @error('nom_herra')
           <div class="alert alert-danger">
             El Nombre de la Herramienta es obligatorio
@@ -50,18 +57,20 @@
             La Actualizacion es obligatoria
           </div>
         @enderror
+
         @if (session('mensaje'))
-        <div class="alert alert success">{{ session('mensaje')}}</div>
+
+            <div class="alert alert success">{{ session('mensaje')}}</div>
 
         @endif
-    <form action="{{ route('herramienta.update', $herramientas->id) }}" method="POST">
-    @method('PUT') 
+      <form action="{{ route('herramienta.update', $herramientas->id) }}" method="POST">
+        @method('PUT')
       @csrf
-      <div class="row">
+      <div class="row card-form" style = "height: 90VH">
       <div class="form-group col-md-6">
-          <label for="nom_herra">Nombre Herramienta</label>
-          <select name="nom_herra" class="form-control" id="nom_herra" value="{{ $herramientas->nom_herra }}">
-            <option  value="" selected disabled>Seleccione una opción</option>
+          <label class = "text" for="nom_herra">Nombre</label>
+          <select name="nom_herra" class="form-control form-gape" id="nom_herra" value="{{ old('nom_herra') }}">
+            <option  value="" selected disabled>{{ $herramientas->nom_herra }}</option>
             <option>Microsoft Word</option>
             <option>Microsoft Excel</option>
             <option>Microsoft PowerPoint</option>
@@ -98,18 +107,18 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="tipo_licencia">Tipo Licencia</label>
-          <select name="tipo_licencia" class="form-control" id="tipo_licencia" value="{{ $herramientas->tipo_licencia }}">
-            <option value="" selected disabled>Seleccione una opción</option>
+          <label class = "text" for="tipo_licencia">Tipo Licencia</label>
+          <select name="tipo_licencia" class="form-control form-gape" id="tipo_licencia" value="{{ old('tipo_licencia') }}">
+            <option value="" selected disabled>{{ $herramientas->tipo_licencia }}</option>
             <option>Propietaria</option>
             <option>Libre</option>
             <option>Hibrida</option>
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="funciones">Portafolio de Funciones</label>
-          <select name="funciones" class="form-control" id="funciones" value="{{ $herramientas->funciones}}">
-            <option value="" selected disabled>Seleccione una opción</option>
+          <label class = "text" for="funciones">Portafolio de Funciones</label>
+          <select name="funciones" class="form-control form-gape" id="funciones" value="{{ old('funciones') }}">
+            <option value="" selected disabled>{{ $herramientas->funciones }}</option>
             <option>Audio</option>
             <option>Video</option>
             <option >Encuestas</option>
@@ -119,106 +128,86 @@
           </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="interaccion">Interaccion</label>
-           <select name="interaccion" class="form-control" id="interaccion" value="{{ $herramientas->interaccion }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-           
-          </select>
+      <label for="interaccion" class="text">Interaccion</label>
+      <div class="row">
+        <div class="col-md-10">
+          <input name="interaccion" type="range" value="{{ $herramientas->interaccion }}" min="1" max="5" autocomplete="off" class="slider" id="input1">
         </div>
-        <div class="form-group col-md-6">
-          <label for="diseño">Diseño</label>
-           <select name="diseño" class="form-control" id="diseño" value="{{ $herramientas->diseño }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-           
-          </select>
+        <div class="col-md-2 text" id="labelNum1"></div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="diseño" class="text">Diseño</label>
+      <div class="row">
+        <div class="col-md-10">
+          <input name="diseño" type="range" value="{{ $herramientas->diseño }}" min="1" max="5" autocomplete="off" class="slider" id="input2">
         </div>
-        <div class="form-group col-md-6">
-          <label for="usabilidad">Usabilidad</label>
-           <select name="usabilidad" class="form-control" id="usabilidad" value="{{ $herramientas->usabilidad }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-           
-          </select>
+        <div class="col-md-2 text" id="labelNum2"></div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+    <label for="usabilidad" class="text">Usabilidad</label>
+      <div class="row">
+        <div class="col-md-10">
+          <input name="usabilidad" type="range" value="{{ $herramientas->usabilidad }}" min="1" max="5" autocomplete="off" class="slider" id="input3">
         </div>
-        <div class="form-group col-md-6">
-          <label for="documentacion">Documentacion</label>
-           <select name="documentacion" class="form-control" id="documentacion" value="{{ $herramientas->documentacion }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-           
-          </select>
+        <div class="col-md-2 text" id="labelNum3"></div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+    <label for="documentacion" class="text">Documentacion</label>
+      <div class="row">
+        <div class="col-md-10">
+          <input name="documentacion" type="range" value="{{ $herramientas->documentacion }}" min="1" max="5" autocomplete="off" class="slider" id="input4">
         </div>
-        <div class="form-group col-md-6">
-          <label for="actualizaciones">Actualizaciones</label>
-           <select name="actualizaciones" class="form-control" id="interaccion" value="{{ $herramientas->actualizaciones }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-           
-          </select>
+        <div class="col-md-2 text" id="labelNum4"></div>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+    <label for="actualizaciones" class="text">Actualizaciones</label>
+      <div class="row">
+        <div class="col-md-10">
+          <input name="actualizaciones" type="range" value="{{ $herramientas->actualizaciones }}" min="1" max="5" autocomplete="off" class="slider" id="input5">
         </div>
-        <div class="form-group col-md-6">
-          <label for="porcentaje_aprove">Porcentaje de Aprovechamiento</label>
-           <select name="porcentaje_aprove" class="form-control" id="porcentaje_aprove" value="{{ old('porcentaje_aprove') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >0</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-            <option >6</option>
-            <option >7</option>
-            <option >8</option>
-            <option >9</option>
-            <option >10</option>
-           
-          </select>
+        <div class="col-md-2 text" id="labelNum5"></div>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="porcentaje_aprove" class="text">Porcentaje de aprovechamiento</label>
+      <div class="row">
+        <div class="progress col-md-8">
+          <div class="progress-bar" role="progressbar" id="porcentaje_aprove"></div>
         </div>
-        <div class="form-group col-md-6">
-          <label for="porcentaje_aproba">Porcentaje de Aprobacion</label>
-           <select name="porcentaje_aproba" class="form-control" id="porcentaje_aproba" value="{{ old('porcentaje_aproba') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >0</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-            <option >6</option>
-            <option >7</option>
-            <option >8</option>
-            <option >9</option>
-            <option >10</option>
-           
-          </select>
+        <div class="col-md-3">
+          <input name="porcentaje_aprove" class="input-number text" type="number" min="0" max="100" value="{{ $herramientas->porcentaje_aprove }}" id="input6">
         </div>
-        
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+    <label for="porcentaje_aproba" class="text">Porcentaje de Aprobacion</label>
+      <div class="row">
+        <div class="progress col-md-8">
+          <div class="progress-bar" role="progressbar" id="porcentaje_aproba"></div>
+        </div>
+        <div class="col-md-3">
+          <input name="porcentaje_aproba" class="input-number text" type="number" min="0" max="100" value="{{ $herramientas->porcentaje_aproba }}" id="input7">
+        </div>
+      </div>
+    </div>
+      
         <br>
         <br>
         <br>
-        <button class="btn btn-warning btn-block " typw="submit">Editar</button> 
+        <button class="btn-form" type="submit" style = "margin:10px; margin-left:627px">Editar</button> 
       </div>
     </form>
+    </body>
+</html>  
+<script>
+  <?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\views\script.js'; ?>
+</script>
 @endsection
