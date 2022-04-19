@@ -633,7 +633,15 @@
       @foreach($estrategias as $item2)
     <tr>
       <th scope="row">{{$item1->id}}</th>
-      <td>{{$item2->nom_herra}}</td>
+      @if($item->nom_herra == 0)  
+      
+      @else
+      @foreach($herras as $herra)
+      @if($herra->id==$item->nom_herra)
+      <td>{{$herra->nombre}}</td>
+      @endif()  
+      @endforeach()  
+      @endif() 
       <td>{{$item1->tipo_licencia}}</td>
       <td>{{$item1->funciones}}</td>
       <td>{{$item1->interaccion}}</td>
