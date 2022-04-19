@@ -157,7 +157,8 @@
 <div class="form-group col-md-6">
           <label class = "text" for="">Estrategia</label>
           <select name="nom_estra" class="form-control form-gape" id="select-nom_estra" value="{{ old('nom_estra') }}">
-           </select>
+          <option value="" selected disabled>Seleccione una Estrategia</option>   
+        </select>
            
 </option>
 </div>
@@ -229,7 +230,8 @@
 <div class="form-group col-md-6">
           <label class = "text" for="">Herramienta</label>
           <select name="nom_herra" class="form-control form-gape" id="select-nom_herra" value="{{ old('nom_herra') }}">
-           </select>
+          <option value="" selected disabled>Seleccione una Herramienta</option>   
+        </select>
            
 </option>
 </div>
