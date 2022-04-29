@@ -4,7 +4,7 @@
 @section('seccion')
 <h1 class="tittle" style = "margin-left:10px">Usuario Docente</h1>
 <style>
-<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+<?php include '..\resources\sass\style.css'; ?>
 </style>
 
 <div class="table-responsive">
@@ -118,11 +118,7 @@
           </div>
         @enderror
         
-        @error('estra_evaluacion')
-          <div class="alert alert-danger">
-            La Estrategia de evaluacion es obligatoria
-          </div>
-        @enderror
+        
 
               
         @error('valoracion_estra')
@@ -150,7 +146,7 @@
                     <option value="{{ $tipo_estra->id}}" >
                         {{$tipo_estra->nombre}}
                     </option>
-                @endforeach
+                @endforeach()
 
             </select>
 </div>
@@ -160,7 +156,7 @@
           <option value="" selected disabled>Seleccione una Estrategia</option>   
         </select>
            
-</option>
+
 </div>
         <div class="form-group col-md-6">
          <label class="text" for="valoracion_estra">Valoracion general de la estrategia</label>
@@ -178,28 +174,6 @@
             <option >9</option>
             <option >10</option>
            
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="estra_evaluacion">Estrategia de Evaluacion</label>
-          <select name="estra_evaluacion" class="form-control form-gape" id="estra_evaluacion" value="{{ old('estra_evaluacion') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >Poster</option>
-            <option >Examenes Escritos</option>
-            <option >Portafolio de evidencias</option>
-            <option >Examenes practicos</option>
-            <option >Listado de criterios de evaluacion propio</option>
-            <option >Bitacora de reflexion</option>
-            <option >Articulo</option>
-            <option >Proyecto</option>
-            <option >Ensayo</option>
-            <option >Trabajo de investigacion</option>
-            <option >Mapa mental</option>
-            <option >Mapa Conceptual</option>
-            <option >Linea de tiempo</option>
-            <option >Reseña de articulo</option>
-            <option >Potcast</option>
-            <option >Construccion de Video</option>
           </select>
         </div>
         
@@ -223,7 +197,7 @@
                     <option value="{{ $tipo_herra->id}}" >
                         {{$tipo_herra->nombre}}
                     </option>
-                @endforeach
+                @endforeach()
 
             </select>
 </div>
@@ -245,7 +219,7 @@
           
                     
         </div>
-        @endforeach
+        @endforeach()
         <button class="btn-form" type="submit" style = "margin-top:30px; margin-left:127px">Agregar</button> 
       </div>
     </form>
@@ -259,7 +233,7 @@
       <th scope="col">Tipo de Estrategia</th>
       <th scope="col">Nombre de Estrategia</th>
       <th scope="col">Valoracion general de la estrategia</th>
-      <th scope="col">Estrategia de Evaluacion</th>
+      
       <th scope="col">Competencias a Evaluar</th>
       <th scope="col">Tipo de Herramienta</th>
       <th scope="col">Nombre de la Herramienta</th>
@@ -295,7 +269,7 @@
       </div>
   </div>
   
-      @endforeach
+      @endforeach()
       @endcan
       <th scope="col">Acciones</th>
       @can('add')
@@ -329,7 +303,7 @@
       
       
       <td>{{$item->valoracion_estra}}</td>
-      <td>{{$item->estra_evaluacion}}</td>
+      
       <td>{{$item->compete_evaluar}}</td>
       @if($item->tipo_herra == 0)  
       
@@ -389,7 +363,7 @@
           @csrf
           <label for="name" class = "text">Nombre Columna</label>
           <input type="text" name="nombre" placeholder="Nombre Columna" class="form-control form-gape" value="" >
-          <input type="text" name="tipo_columnas"  value="instituciones" hidden>
+          <input type="text" name="tipo_columnas"  value="estrategias" hidden>
           <br>
           <button type="button" class="btn btn-secondary" style = "border-radius:10px" data-dismiss="modal">Close</button>
           <button  class="btn" type="submit"style="background:#486A8C;color:#EFE6E6; font-size: 18px; border-radius:10px">Save changes</button>
@@ -456,11 +430,24 @@
       <div class="row card-form">
     <div class="form-group col-md-12">
       <label class = "text" for="nom_herra">Nombre</label>
-      @foreach($estrategias as $estrategia) 
-      <input type="text" name="nom_herra" placeholder="Nombre" class="form-control form-gape" value="{{ $estrategia->nom_herra }}" readonly>
-        
-           @endforeach
       
+      <select name="nom_herra" class="form-control form-gape" id="nom_herra" value="{{ old('nom_herra')}} ">
+      
+      
+      @foreach($estrategias as $estra)
+      @if($estra->nom_herra == 0)  
+      @else
+      @foreach($herras as $herra)
+      @if($herra->id==$estra->nom_herra)
+      <option value="{{ $estra->nom_herra}}">
+                {{$herra->nombre}}
+        </option>
+      @endif()  
+      @endforeach()  
+      @endif() 
+      @endforeach()
+           </select>
+           
     </div>
 
     <div class="form-group col-md-6">
@@ -652,12 +639,12 @@
       <td>{{$item1->porcentaje_aprove}}</td>
       <td>{{$item1->porcentaje_aproba}}</td>
       <td>
-      <a href="{{ route('herramienta.editar', $item) }}" class="btn" style="background: #486A8C;">
+      <a href="{{ route('herramienta.editar', $item1) }}" class="btn" style="background: #486A8C;">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
             <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
           </svg>
         </a>
-        <form action="{{ route('herramienta.eliminar', $item)}}" method="POST" class="d-inline">
+        <form action="{{ route('herramienta.eliminar', $item1)}}" method="POST" class="d-inline">
         @method('DELETE')  
         @csrf
         <button class="btn" style="background: #486A8C;" type="submit">
@@ -668,8 +655,8 @@
         </form>
       </td>
     </tr>
-    @endforeach
-    @endforeach
+    @endforeach()
+    @endforeach()
   </tbody>
 </table>
 </div>
@@ -704,6 +691,6 @@
 <script src="{{ asset('js/estra.js')}}" ></script>
 
 <script>
-  <?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\views\script.js'; ?>
+  <?php include '..\resources\views\script.js'; ?>
 </script>
 @endsection

@@ -278,13 +278,11 @@
       <th scope="col">Acciones</th>
       @can('add')
       <th scope="col"><button class="btn btn-block bg-gradient-primary" typw="" data-toggle="modal" data-target="#exampleModal">+</button></th>
-      @endcan
-      
-                
+      @endcan        
     </tr>
   </thead>
   </div>
-  <tbody>
+  <tbody class = "text">
       @foreach($herramientas as $item)
     <tr>
       <th scope="row">{{$item->id}}</th>

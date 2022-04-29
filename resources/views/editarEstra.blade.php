@@ -3,7 +3,7 @@
 @section('seccion')
 <h1 class="tittle">Editar Estrategia{{ $estras->id}}</h1>
 <style>
-<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+<?php include '..\resources\sass\style.css'; ?>
 </style>
 @error('nombre')
           <div class="alert alert-danger">
@@ -22,7 +22,7 @@
             <div class="alert alert success">{{ session('mensaje')}}</div>
 
         @endif
-      <form action="{{ route('estra.update', $herras->id) }}" method="POST">
+      <form action="{{ route('estra.update', $estras->id) }}" method="POST">
         @method('PUT')
       @csrf
       <div class="row card-form">
@@ -34,16 +34,22 @@
         <div class="form-group col-md-6">
           <label for="tipo_estra_id" class = "text" >Tipo de Estrategia</label>
           <select name="tipo_estra_id" placeholder="TipoEstrategia" class="form-control form-gape" value="{{ old('tipo_estra_id') }}">
-            <option  value="" selected disabled>{{ $estras->tipo_estra_id }}</option>
-            <option>Institucion1</option>
-            <option>Institucion2</option>   
+          <option  value="" selected disabled>Seleccione Tipo de Estrategia</option>
+          @foreach($tipoestras as $tipoestra)  
+          <option  value="{{$tipoestra->id}}">{{ $tipoestra->nombre }}</option>
+          
+            
+          
+          @endforeach()
+          
+        
           </select>
         </div>
       
         <br>
         <br>
         <br>
-        <button class="btn-form" type="submit" style = "margin:10px; margin-left:127px">Editar</button> 
+        <button class="btn-form" type="submit" style = "margin:10px; margin-left:627px">Editar</button> 
       </div>
     </form>
 @endsection

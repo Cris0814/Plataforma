@@ -54,7 +54,7 @@ class EstrategiaController extends Controller
        $estrategiaNueva->tipo_estra = $request->tipo_estra;
        $estrategiaNueva->nom_estra = $request->nom_estra;
        $estrategiaNueva->valoracion_estra = $request->valoracion_estra;
-       $estrategiaNueva->estra_evaluacion = $request->estra_evaluacion;
+       
        $estrategiaNueva->compete_evaluar = $request->compete_evaluar;
        $estrategiaNueva->tipo_herra = $request->tipo_herra;
        $estrategiaNueva->nom_herra = $request->nom_herra;
@@ -82,7 +82,7 @@ class EstrategiaController extends Controller
         $estrategiaUpdate->tipo_estra = $request->tipo_estra;
         $estrategiaUpdate->nom_estra = $request->nom_estra;
         $estrategiaUpdate->valoracion_estra = $request->valoracion_estra;
-        $estrategiaUpdate->estra_evaluacion = $request->estra_evaluacion;
+        
         $estrategiaUpdate->compete_evaluar = $request->compete_evaluar;
         $estrategiaUpdate->tipo_herra = $request->tipo_herra;
         $estrategiaUpdate->nom_herra = $request->nom_herra;

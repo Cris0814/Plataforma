@@ -3,7 +3,7 @@
 @section('seccion')
 <h1 class = "tittle">Editar Estrategia{{ $estrategias->id}}</h1>
 <style>
-<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+<?php include '..\resources\sass\style.css'; ?>
 </style>
 @error('tipo_estra')
           <div class="alert alert-danger">
@@ -95,28 +95,7 @@
            
           </select>
         </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="estra_evaluacion">Estrategia de Evaluacion</label>
-          <select name="estra_evaluacion" class="form-control form-gape" id="estra_evaluacion" value="{{ old('estra_evaluacion') }}">
-            <option value="" selected disabled>{{ $estrategias->estra_evaluacion }}</option>
-            <option >Poster</option>
-            <option >Examenes Escritos</option>
-            <option >Portafolio de evidencias</option>
-            <option >Examenes practicos</option>
-            <option >Listado de criterios de evaluacion propio</option>
-            <option >Bitacora de reflexion</option>
-            <option >Articulo</option>
-            <option >Proyecto</option>
-            <option >Ensayo</option>
-            <option >Trabajo de investigacion</option>
-            <option >Mapa mental</option>
-            <option >Mapa Conceptual</option>
-            <option >Linea de tiempo</option>
-            <option >Reseña de articulo</option>
-            <option >Potcast</option>
-            <option >Construccion de Video</option>
-          </select>
-        </div>
+        
         
         <div class="form-group col-md-6">
          <label class="text" for="compete_evaluar">Competencias a evaluar</label>
@@ -151,7 +130,7 @@
         <br>
         <br>
         <br>
-        <button class="btn-form" type="submit" style = "margin:10px; margin-left:127px">Editar</button> 
+        <button class="btn-form" type="submit" style = "margin:10px; margin-left:627px">Editar</button> 
       </div>
     </form>
     <script src="{{ asset('js/editestra.js')}}" ></script>

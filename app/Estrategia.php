@@ -14,7 +14,7 @@ class Estrategia extends Model
         'tipo_herra',
         'nom_herra',
         'compete_evaluar',
-        'estra_evaluacion',
+        
         'valoracion_estra',
     ];
 }

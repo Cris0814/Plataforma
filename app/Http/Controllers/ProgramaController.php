@@ -46,7 +46,7 @@ class ProgramaController extends Controller
         $programaUpdate->nombre = $request->nombre;
         $programaUpdate->institucion_id = $request->institucion_id;
         
-        $institucionUpdate->save();  
+        $programaUpdate->save();  
 
         return back()->with('mensaje', 'Programa Actualizado');
     }

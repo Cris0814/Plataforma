@@ -4,7 +4,7 @@
 @section('seccion')
 <h1 class="tittle"> Administrador</h1>
 <style>
-<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+<?php include '..\resources\sass\style.css'; ?>
 </style>
        @error('name')
           <div class="alert alert-danger">
@@ -24,11 +24,7 @@
           </div>
         @enderror
         
-        @error('tipo')
-          <div class="alert alert-danger">
-            El tipo es obligatorio
-          </div>
-        @enderror
+        
 
         @error('pais')
           <div class="alert alert-danger">
@@ -70,19 +66,7 @@
           @endforeach
           </select>
         </div>
-        <div class="form-group col-md-6">
-        <label class = "text" for="tipo">Tipo</label>
-        <div class="row">
-          <div class="form-check col-md-5" style="margin-left:10px">
-            <input class="form-check-input" type="radio" name="tipo" id="type1" value="Privada">
-            <label class="form-check-label text" for="type1">Privada</label>
-          </div>
-          <div class="form-check col-md-6">
-            <input class="form-check-input radio-butn" type="radio" name="tipo" id="type2" value="Pública">
-            <label class="form-check-label text" for="type2">Pública</label>
-          </div>
-          </div>
-        </div>
+        
         <div class="form-group col-md-6">
           <label class = "text" for="pais">Pais</label>
           
@@ -93,13 +77,14 @@
                     <option value="{{ $pais->id}}" >
                         {{$pais->nombre}}
                     </option>
-                @endforeach
+                @endforeach()
 
             </select>
 </div>
             <div class="form-group col-md-6">
           <label class = "text" for="ciudad">Ciudad</label>
           <select name="ciudad" class="form-control form-gape" id="select-ciudad" value="{{ old('ciudad') }}">
+          <option value="" selected disabled>Seleccione una Ciudad</option>
            </select>
            
 </option>
@@ -143,7 +128,16 @@
       <th scope="row">{{$item->id}}</th>
       <td>{{$item->name}}</td>
       <td>{{$item->email}}</td>
-      <td>{{$item->intitucion}}</td>
+      @if($item->institucion == 0)  
+      <td></td>
+      @else
+      @foreach($instituciones as $institucion)
+      @if($institucion->id==$item->institucion)
+      <td>{{$institucion->nombre}}</td>
+      @endif()  
+      @endforeach()  
+      @endif() 
+      
       <td>{{$item->getRoleNames()}}</td>
       @if($item->pais == 0)  
       <td></td>

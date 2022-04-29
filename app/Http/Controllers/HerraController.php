@@ -36,8 +36,9 @@ class HerraController extends Controller
     }
 
     public function editar($id){
+        $tipoherras = App\Tipo_Herras::all();
         $herras = App\Herra::findOrFail($id);
-        return view('editarHerra', compact('herras'));
+        return view('editarHerra', compact('herras','tipoherras'));
     }
 
     public function update(Request $request, $id){

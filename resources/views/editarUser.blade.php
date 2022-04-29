@@ -5,7 +5,7 @@
 
 <h1 class="tittle">Editar Docente</h1>
 <style>
-<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+<?php include '..\resources\sass\style.css'; ?>
 </style>
 @error('name')
           <div class="alert alert-danger">
@@ -81,13 +81,13 @@
           <label class = "text" for="institucion">Institucion</label>
           
           <select name="institucion" class="form-control form-gape" id="select-institucion" value="{{ $users->institucion }}">
-          <option value="" selected disabled>{{ $users->institucion }}</option>
+          
 
                 @foreach($instituciones as $institucion)
                     <option value="{{ $institucion->id}}" >
                         {{$institucion->nombre}}
                     </option>
-                @endforeach
+                @endforeach()
 
             </select>
             

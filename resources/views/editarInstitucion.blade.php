@@ -3,7 +3,7 @@
 @section('seccion')
 <h1 class="tittle">Editar Institucion{{ $instituciones->id}}</h1>
 <style>
-<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+<?php include '..\resources\sass\style.css'; ?>
 </style>
 @error('nombre')
 <div class="alert alert-danger">
@@ -60,6 +60,7 @@
             <div class="form-group col-md-6">
           <label class = "text" for="ciudad">Ciudad</label>
           <select name="ciudad" class="form-control form-gape" id="select-ciudad" value="{{ $instituciones->ciudad }}">
+          <option value="" selected disabled>Seleccione una Ciudad</option>
            </select>
            
 </option>

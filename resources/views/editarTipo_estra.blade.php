@@ -1,7 +1,10 @@
 @extends('plantilla')
 
 @section('seccion')
-<h1 class="tittle">Editar Tipo de Herramienta{{ $tipoherras->id}}</h1>
+<h1 class="tittle">Editar tipo de estrategia {{ $tipoestras->id}}</h1>
+<style>
+<?php include '..\resources\sass\style.css'; ?>
+</style>
 @error('nombre')
           <div class="alert alert-danger">
             El Nombre es obligatorio
@@ -19,28 +22,17 @@
             <div class="alert alert success">{{ session('mensaje')}}</div>
 
         @endif
-      <form action="{{ route('tipoestra.update', $tipoestras->id) }}" method="POST">
+      <form action="{{ route('tipo_estra.update', $tipoestras->id) }}" method="POST">
         @method('PUT')
       @csrf
       <div class="row card-form">
       <div class="form-group col-md-6">
-          <label class = "text" for="nombre">Nombre Estrategia</label>
+          <label class = "text" for="nombre">Nombre tipo estrategia</label>
           <input type="text" name="nombre" placeholder="Nombre" class="form-control form-gape" value="{{ $tipoestras->nombre }}" >
         </div>
-        
         <div class="form-group col-md-6">
-          <label for="tipo_estra_id" class = "text" >Tipo de Estrategia</label>
-          <select name="tipo_estra_id" placeholder="TipoEstrategia" class="form-control form-gape" value="{{ old('tipo_estra_id') }}">
-            <option  value="" selected disabled>{{ $tipoestras->tipo_estra_id }}</option>
-            <option>Institucion1</option>
-            <option>Institucion2</option>   
-          </select>
-        </div>
-      
-        <br>
-        <br>
-        <br>
-        <button class="btn btn-primary btn-block btn-form" type="submit">Editar</button> 
+        <button class="btn-form" type="submit" style = "margin:30px;">Editar</button> 
+        </div> 
       </div>
     </form>
 @endsection

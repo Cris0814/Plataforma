@@ -8,6 +8,7 @@ use App\Http\Requests\ColumnaRequest;
 use App;
 use App\Columna;
 use App\Estrategia;
+use App\User;
 
 use App\Herramienta;
 
@@ -17,11 +18,12 @@ class HerramientaController extends Controller
     public function herramienta(){
         $herramientas = App\Herramienta::all();
         $estrategias = App\Estrategia::all();
+        
 
         $columnas = Columna::where('tipo_columnas', 'herramientas')->get();
 
 
-        return view('herramienta', compact('herramientas','estrategias','columnas'));
+        return view('herramienta', compact('herramientas','estrategias','columnas','users'));
     }
 
     public function crear(Request $request){

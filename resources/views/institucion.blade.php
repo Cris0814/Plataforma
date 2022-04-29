@@ -4,7 +4,7 @@
 
 <h1 class="tittle">Institucion</h1>
 <style>
-<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+<?php include '..\resources\sass\style.css'; ?>
 </style>
 @error('nombre')
           <div class="alert alert-danger">
@@ -48,13 +48,14 @@
                     <option value="{{ $pais->id}}" >
                         {{$pais->nombre}}
                     </option>
-                @endforeach
+                @endforeach()
 
             </select>
 </div>
             <div class="form-group col-md-6">
           <label class = "text" for="ciudad">Ciudad</label>
           <select name="ciudad" class="form-control form-gape" id="select-ciudad" value="{{ old('ciudad') }}">
+          <option value="" selected disabled>Seleccione una Ciudad</option>
            </select>
           
            </div>
@@ -81,7 +82,7 @@
           <input type="text" name="columnas[{{$column->id}}]" class="form-control" value="" >
               
         </div>
-        @endforeach
+        @endforeach()
       
       </div>
     </form>
@@ -125,7 +126,7 @@
           <div class="modal-footer">
         </div>
       </div>
-      @endforeach
+      @endforeach()
       <th scope="col">Acciones</th>
       @can('add')
       <th scope="col"><button class="btn btn-block" typw="" data-toggle="modal" data-target="#exampleModal" style="background:#486A8C;color:#EFE6E6; font-size: 18px;">+</button></th>
@@ -175,7 +176,7 @@
         </form>
       </td>
     </tr>
-    @endforeach
+    @endforeach()
   </tbody>
 </table>
 </div>
@@ -236,7 +237,7 @@
             <option  value="" selected disabled>Seleccione una Institucion</option>
             @foreach($instituciones as $institucion)
           <option value = "{{$institucion->id}}">{{$institucion->nombre}}</option>
-          @endforeach
+          @endforeach()
           </select>
         </div>
         
@@ -245,7 +246,7 @@
           <label for="{{$column->nombre}}" class = "text" >{{$column->nombre}}</label>
           <input type="text" name="columnas[{{$column->id}}]" class="form-control form-gape" value="" >  
         </div>
-        @endforeach
+        @endforeach()
         <button class="btn-form" type="submit" style = "margin:10px; margin-left:627px">Agregar</button> 
       </div>
     </form>
@@ -303,18 +304,18 @@
   <tbody>
       @foreach($programas as $item1)
     <tr>
-      <th scope="row">{{$item->id}}</th>
+      <th scope="row">{{$item1->id}}</th>
       <td>{{$item1->nombre}}</td>
       <td>{{$item1->institucion_id}}</td>
       
       
       <td>
-      <a href="{{ route('programa.editar', $item) }}" class="btn" style="background: #486A8C;">
+      <a href="{{ route('programa.editar', $item1) }}" class="btn" style="background: #486A8C;">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
             <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
           </svg>
         </a>
-        <form action="{{ route('programa.eliminar', $item)}}" method="POST" class="d-inline">
+        <form action="{{ route('programa.eliminar', $item1)}}" method="POST" class="d-inline">
         @method('DELETE')  
         @csrf
         <button class="btn" style="background: #486A8C;" type="submit">
@@ -325,7 +326,7 @@
         </form>
       </td>
     </tr>
-    @endforeach
+    @endforeach()
   </tbody>
 </table>
 </div>

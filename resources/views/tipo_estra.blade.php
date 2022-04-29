@@ -4,7 +4,7 @@
 
 <h1 class="tittle">Tipo de estrategia</h1>
 <style>
-<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+<?php include '..\resources\sass\style.css'; ?>
 </style>
 @error('nombre')
           <div class="alert alert-danger">
@@ -64,7 +64,7 @@
           <div class="modal-footer">
         </div>
       </div>
-      @endforeach
+      @endforeach()
       <th scope="col">Acciones</th>
       @can('add')
       <th scope="col"><button class="btn btn-block" typw="" data-toggle="modal" data-target="#exampleModal" style="background:#486A8C;color:#EFE6E6; font-size: 18px;">+</button></th>
@@ -77,12 +77,12 @@
       <th scope="row">{{$item->id}}</th>
       <td>{{$item->nombre}}</td>
       <td>
-      <a href="{{ route('tipoestra.editar', $item) }}" class="btn" style="background: #486A8C;">
+      <a href="{{ route('tipo_estra.editar', $item) }}" class="btn" style="background: #486A8C;">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
             <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
           </svg>
         </a>
-        <form action="{{ route('tipoestra.eliminar', $item)}}" method="POST" class="d-inline">
+        <form action="{{ route('tipo_estra.eliminar', $item)}}" method="POST" class="d-inline">
         @method('DELETE')  
         @csrf
         <button class="btn" style="background: #486A8C;" type="submit">
@@ -93,7 +93,7 @@
         </form>
       </td>
     </tr>
-    @endforeach
+    @endforeach()
   </tbody>
 </table>
 </div>
@@ -149,9 +149,14 @@
         <div class="form-group col-md-6">
           <label for="tipo_estra_id" class = "text" >Tipo de Estrategia</label>
           <select name="tipo_estra_id" placeholder="TipoEstrategia" class="form-control form-gape" value="{{ old('tipo_estra_id') }}">
-            <option  value="" selected disabled>Seleccione un Tipo de Estrategia</option>
-            <option>Institucion1</option>
-            <option>Institucion2</option>   
+          <option value="" selected disabled>Seleccione un Tipo de Estrategia</option>
+          @foreach($tipoestras as $tipoestra)  
+          <option  value="{{$tipoestra->id}}">{{ $tipoestra->nombre }}</option>
+          
+                     
+          @endforeach()
+          
+        
           </select>
         </div>
         
@@ -218,13 +223,13 @@
   <tbody>
       @foreach($estras as $item1)
     <tr>
-      <th scope="row">{{$item->id}}</th>
+      <th scope="row">{{$item1->id}}</th>
       <td>{{$item1->nombre}}</td>
       <td>{{$item1->tipo_estra_id}}</td>
       
       
       <td>
-      <a href="{{ route('estra.editar', $item) }}" class="btn" style="background: #486A8C;">
+      <a href="{{ route('estra.editar', $item1) }}" class="btn" style="background: #486A8C;">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
             <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
           </svg>
@@ -240,7 +245,7 @@
         </form>
       </td>
     </tr>
-    @endforeach
+    @endforeach()
   </tbody>
 </table>
 </div>

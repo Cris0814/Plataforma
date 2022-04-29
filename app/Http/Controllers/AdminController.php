@@ -35,7 +35,7 @@ class AdminController extends Controller
                 'nombre' => 'required',
                 'email' => 'required',    
                 'institucion' => 'required',
-                'tipo' => 'required',
+                
                 'pais' => 'required',
                 'ciudad' => 'required',
                 'region' => 'required',
@@ -46,7 +46,7 @@ class AdminController extends Controller
        $adminNuevo->name = $request->name;
        $adminNuevo->email = $request->email;
        $adminNuevo->institucion = $request->institucion;
-       $adminNuevo->tipo = $request->tipo;
+       $
        $adminNuevo->pais = $request->pais;
        $adminNuevo->ciudad = $request->ciudad;
        $adminNuevo->region = $request->region;
@@ -72,11 +72,11 @@ class AdminController extends Controller
     public function update(Request $request, $id){
 
         
-        $adminUpdate = App\Admin::findOrFail($id);
+        $adminUpdate = App\User::findOrFail($id);
         $adminUpdate->name = $request->name; 
         $adminUpdate->email = $request->email; 
         $adminUpdate->institucion = $request->institucion; 
-        $adminUpdate->tipo = $request->tipo; 
+        
         $adminUpdate->pais = $request->pais; 
         $adminUpdate->ciudad = $request->ciudad; 
         $adminUpdate->region = $request->region; 

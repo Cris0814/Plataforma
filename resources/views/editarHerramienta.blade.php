@@ -6,7 +6,7 @@
 <head>
 <h1 class = "tittle">Editar Herramienta{{ $herramientas->id}}</h1>
 <style>
-<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+<?php include '..\resources\sass\style.css'; ?>
 </style>
 </head>
 <body>
@@ -208,6 +208,6 @@
     </body>
 </html>  
 <script>
-  <?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\views\script.js'; ?>
+  <?php include '..\resources\views\script.js'; ?>
 </script>
 @endsection

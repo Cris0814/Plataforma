@@ -1,10 +1,10 @@
 $(function () {
         
-    $('#select-tipo_estra').on('change', onSelectTipo_EstrasChange);
+    $('#select-tipo_estra').on('change', onSelectTipo_EstraChange);
 
 }); 
 
-function onSelectTipo_EstrasChange()
+function onSelectTipo_EstraChange()
 {
 var tipo_estra_id = $(this).val();
 

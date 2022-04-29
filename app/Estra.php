@@ -9,7 +9,7 @@ class Estra extends Model{
     protected $table = 'estras'; 
     public function get(){
         $estras = Estra::get();
-        $estrasArray [''] = 'Seleccione una Herramienta';
+        $estrasArray [''] = 'Seleccione una Estrategia';
         foreach ($estras as $estra){
 
             $estrasArray[$estra->id] = $estra->nombre; 

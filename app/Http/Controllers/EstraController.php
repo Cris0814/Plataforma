@@ -36,8 +36,9 @@ class EstraController extends Controller
     }
 
     public function editar($id){
+        $tipoestras = App\Tipo_Estras::all();
         $estras = App\Estra::findOrFail($id);
-        return view('editarEstra', compact('estras'));
+        return view('editarEstra', compact('estras','tipoestras'));
     }
 
     public function update(Request $request, $id){

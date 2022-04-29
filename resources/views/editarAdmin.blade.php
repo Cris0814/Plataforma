@@ -3,7 +3,7 @@
 @section('seccion')
 <h1 class = "tittle">Editar Admin</h1>
 <style>
-<?php include 'C:\xampp\htdocs\proyecto\laravel\proyecto\resources\sass\style.css'; ?>
+<?php include '..\resources\sass\style.css'; ?>
 </style>
 @error('name')
           <div class="alert alert-danger">
@@ -23,11 +23,7 @@
           </div>
         @enderror
         
-        @error('tipo')
-          <div class="alert alert-danger">
-            El tipo es obligatorio
-          </div>
-        @enderror
+        
 
         @error('pais')
           <div class="alert alert-danger">
@@ -52,7 +48,7 @@
         <div class="alert alert success">{{ session('mensaje')}}</div>
 
         @endif
-<form action="{{ route('user.update', $users->id) }}" method="POST">
+<form action="{{ route('admin.update', $users->id) }}" method="POST">
 @method('PUT')      
 @csrf
 
@@ -71,22 +67,10 @@
             <option  value="" selected disabled>Seleccione una Institucion</option>
             @foreach($instituciones as $institucion)
           <option value = "{{$institucion->id}}">{{$institucion->nombre}}</option>
-          @endforeach
+          @endforeach()
           </select>
         </div>
-        <div class="form-group col-md-6">
-        <label class = "text" for="tipo">Tipo</label>
-        <div class="row">
-          <div class="form-check col-md-5" style="margin-left:10px">
-            <input class="form-check-input" type="radio" name="tipo" id="type1" value="Privada">
-            <label class="form-check-label text" for="type1">Privada</label>
-          </div>
-          <div class="form-check col-md-6">
-            <input class="form-check-input radio-butn" type="radio" name="tipo" id="type2" value="Pública">
-            <label class="form-check-label text" for="type2">Pública</label>
-          </div>
-          </div>
-        </div>
+        
         <div class="form-group col-md-6">
           <label class = "text" for="pais">Pais</label>
           
@@ -97,7 +81,7 @@
                     <option value="{{ $pais->id}}" >
                         {{$pais->nombre}}
                     </option>
-                @endforeach
+                @endforeach()
 
             </select>
 </div>

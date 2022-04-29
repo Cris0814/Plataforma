@@ -54,7 +54,7 @@ class TipoEstraController extends Controller
 
     public function eliminar($id){
 
-        $tipoestraEliminar = App\Tipo_Estra::findOrFail($id);
+        $tipoestraEliminar = App\Tipo_Estras::findOrFail($id);
         $tipoestraEliminar->delete();
 
         return back()->with('mensaje','Tipo de Estrategia Eliminada');

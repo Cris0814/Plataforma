@@ -20,7 +20,9 @@ Route::get('/admin/{id}/ciudad','AdminController@byPais');
 Route::get('/editarAdmin/{id}/ciudad','AdminController@byPais');
 Route::get('/institucion/{id}/ciudad','AdminController@byPais');
 Route::get('/editarInstitucion/{id}/ciudad','AdminController@byPais');
-Route::get('/estrategia/{id}/estra','EstrategiaController@byEstra');
-Route::get('/editarEstrategia/{id}/estra','EstrategiaController@byEstra');
-Route::get('/estrategia/{id}/herra','EstrategiaController@byHerra');
-Route::get('/editarEstrategia/{id}/herra','EstrategiaController@byHerra');
+
+Route::get('/estrategia/{id}/nom_estra','EstrategiaController@byEstra');
+Route::get('/editarEstrategia/{id}/nom_estra','EstrategiaController@byEstra');
+
+Route::get('/estrategia/{id}/nom_herra','EstrategiaController@byHerra');
+Route::get('/editarEstrategia/{id}/nom_herra','EstrategiaController@byHerra');
