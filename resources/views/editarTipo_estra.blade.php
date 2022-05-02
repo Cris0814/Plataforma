@@ -11,11 +11,7 @@
           </div>
         @enderror
 
-        @error('tipo_estra_id')
-          <div class="alert alert-danger">
-            El tipo de estrategia es obligatoria
-          </div>
-        @enderror
+        
 
         @if (session('mensaje'))
 

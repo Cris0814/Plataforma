@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Model
 {
-    
+    protected $table = 'users';
+    protected $fillable = [
+        'name', 
+        'email',
+        
+        'institucion',
+        
+        'pais',
+        'ciudad',
+        'region',
+        'is_admin',
+    ];
 }

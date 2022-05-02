@@ -17,8 +17,8 @@ if (! tipo_herra_id){
 $.get('/api/estrategia/'+tipo_herra_id+'/nom_herra', function (data) {
     var html_select = '<option value="">Seleccione una Herramienta</option>';
     for (var i=0; i<data.length; i++)
-        html_select += '<option value="'+data[i].id+'">'+data[i].nombre+'</option>'
+        html_select += '<option value="'+data[i].nombre+'">'+data[i].nombre+'</option>'
     $('#select-nom_herra').html(html_select);
-
+    $('#select-nom_herra').on('change', onSelectTipo_NomHerraChange);
 });
 }

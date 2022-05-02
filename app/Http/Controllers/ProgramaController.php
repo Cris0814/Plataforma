@@ -23,6 +23,10 @@ class ProgramaController extends Controller
 
     public function crear(ProgramaRequest $request){
 
+        $this->validate($request,['nombre' => 'required',
+        'institucion_id' => 'required',    
+        ]);
+
        $programaNuevo = new App\Programa;
 
        $programaNuevo->nombre = $request->nombre;
@@ -41,6 +45,10 @@ class ProgramaController extends Controller
     }
 
     public function update(Request $request, $id){
+
+        $this->validate($request,['nombre' => 'required',
+        'institucion_id' => 'required',    
+        ]);
 
         $programaUpdate = App\Programa::findOrFail($id);
         $programaUpdate->nombre = $request->nombre;

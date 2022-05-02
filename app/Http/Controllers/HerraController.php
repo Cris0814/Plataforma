@@ -23,6 +23,11 @@ class HerraController extends Controller
 
     public function crear(HerraRequest $request){
 
+        $this->validate($request,['nombre' => 'required',
+        'tipo_herra_id' => 'required',
+    
+        
+        ]);
        $herraNueva = new App\Herra;
 
        $herraNueva->nombre = $request->nombre;
@@ -43,6 +48,11 @@ class HerraController extends Controller
 
     public function update(Request $request, $id){
 
+        $this->validate($request,['nombre' => 'required',
+        'tipo_herra_id' => 'required',
+    
+        
+        ]);
         $herraUpdate = App\Herra::findOrFail($id);
         $herraUpdate->nombre = $request->nombre;
         $herraUpdate->tipo_herra_id = $request->tipo_herra_id;

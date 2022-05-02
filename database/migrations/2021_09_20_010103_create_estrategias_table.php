@@ -18,11 +18,12 @@ class CreateEstrategiasTable extends Migration
             
             $table->char('tipo_estra',100);
             $table->char('nom_estra',100);
-            $table->integer('valoracion_estra');
+            
             
             $table->char('compete_evaluar',100);
             $table->char('tipo_herra',100);
             $table->char('nom_herra',100);
+            $table->integer('valoracion_estra');
             
             
             

@@ -29,6 +29,7 @@ class HerramientaController extends Controller
     public function crear(Request $request){
        // return $request->all();
     //    dd($request->columnas);
+    
        $herramientaNueva = new App\Herramienta;
 
 
@@ -73,6 +74,10 @@ class HerramientaController extends Controller
     }
 
     public function update(Request $request, $id){
+
+
+     
+        
 
         $herramientaUpdate = App\Herramienta::findOrFail($id);
         $herramientaUpdate->nom_herra = $request->nom_herra;

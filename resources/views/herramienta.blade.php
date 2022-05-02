@@ -2,11 +2,7 @@
 
 @section('seccion')
 <h1>Herramienta</h1>
-@error('nom_herra')
-          <div class="alert alert-danger">
-            El Nombre de la Herramienta es obligatorio
-          </div>
-        @enderror
+
 
         @error('tipo_licencia')
           <div class="alert alert-danger">

@@ -25,6 +25,10 @@ class TipoEstraController extends Controller
 
     public function crear(Tipo_EstraRequest $request){
 
+        $this->validate($request,['nombre' => 'required',
+        
+        ]);
+
        $tipoestraNueva = new App\Tipo_Estras;
 
        $tipoestraNueva->nombre = $request->nombre;
@@ -42,6 +46,10 @@ class TipoEstraController extends Controller
     }
 
     public function update(Request $request, $id){
+
+        $this->validate($request,['nombre' => 'required',
+        
+        ]);
 
         $tipoestraUpdate = App\Tipo_Estras::findOrFail($id);
         $tipoestraUpdate->nombre = $request->nombre;

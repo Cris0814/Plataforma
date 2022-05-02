@@ -25,6 +25,10 @@ class TipoHerraController extends Controller
 
     public function crear(Tipo_HerraRequest $request){
 
+        $this->validate($request,['nombre' => 'required',
+        
+        ]);
+
        $tipoherraNueva = new App\Tipo_Herras;
 
        $tipoherraNueva->nombre = $request->nombre;
@@ -42,7 +46,9 @@ class TipoHerraController extends Controller
     }
 
     public function update(Request $request, $id){
-
+        $this->validate($request,['nombre' => 'required',
+        
+        ]);
         $tipoherraUpdate = App\Tipo_Herras::findOrFail($id);
         $tipoherraUpdate->nombre = $request->nombre;
         

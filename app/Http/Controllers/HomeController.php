@@ -103,7 +103,7 @@ header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetm
 header('Content-Disposition: attachment;filename="ArchivoPlano.csv"');
 header('Cache-Control: max-age=0');
 
-$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($excel, 'Csv');
+$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($excel, "Csv");
 $writer->save('php://output');
 exit;
     }

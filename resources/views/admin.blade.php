@@ -6,6 +6,9 @@
 <style>
 <?php include '..\resources\sass\style.css'; ?>
 </style>
+
+
+
        @error('name')
           <div class="alert alert-danger">
             El Nombre es obligatorio
@@ -34,7 +37,7 @@
 
         @error('ciudad')
           <div class="alert alert-danger">
-            La ciudad es abligatoria
+            La Ciudad es abligatoria
           </div>
         @enderror
         
@@ -43,7 +46,8 @@
             La region es obligatoria
           </div>
         @enderror
-    <div class="">
+    <
+    
       <form action="{{ route('user.crear') }}" method="POST">
         @csrf
         <input type="text" name="role" value="1" hidden>
@@ -62,8 +66,8 @@
           <select name="institucion" placeholder="Institucion" class="form-control form-gape" value="{{ old('institucion') }}">
             <option  value="" selected disabled>Seleccione una Institucion</option>
             @foreach($instituciones as $institucion)
-          <option value = "{{$institucion->id}}">{{$institucion->nombre}}</option>
-          @endforeach
+          <option value = "{{$institucion->id}},{{$institucion->nombre}}">{{$institucion->nombre}}</option>
+          @endforeach()
           </select>
         </div>
         
@@ -73,13 +77,15 @@
           <select name="pais" class="form-control form-gape" id="select-pais" value="{{ old('pais') }}">
           <option value="" selected disabled>Seleccione un Pais</option>
 
-                @foreach($paises as $pais)
-                    <option value="{{ $pais->id}}" >
+          @foreach($paises as $pais)
+                    <option value="{{ $pais->id}}, {{ $pais->nombre}}" >
                         {{$pais->nombre}}
                     </option>
                 @endforeach()
 
             </select>
+
+            
 </div>
             <div class="form-group col-md-6">
           <label class = "text" for="ciudad">Ciudad</label>
@@ -128,36 +134,11 @@
       <th scope="row">{{$item->id}}</th>
       <td>{{$item->name}}</td>
       <td>{{$item->email}}</td>
-      @if($item->institucion == 0)  
-      <td></td>
-      @else
-      @foreach($instituciones as $institucion)
-      @if($institucion->id==$item->institucion)
-      <td>{{$institucion->nombre}}</td>
-      @endif()  
-      @endforeach()  
-      @endif() 
+      <td>{{$item->institucion}}</td>
       
       <td>{{$item->getRoleNames()}}</td>
-      @if($item->pais == 0)  
-      <td></td>
-      @else
-      @foreach($paises as $pais)
-      @if($pais->id==$item->pais)
-      <td>{{$pais->nombre}}</td>
-      @endif()  
-      @endforeach()  
-      @endif()  
-
-      @if($item->ciudad == 0)  
-      <td></td>
-      @else
-      @foreach($ciudades as $ciudad)
-      @if($ciudad->id==$item->ciudad)
-      <td>{{$ciudad->nombre}}</td>
-      @endif()  
-      @endforeach()  
-      @endif() 
+      <td>{{$item->pais}}</td>
+      <td>{{$item->ciudad}}</td>
       <td>{{$item->region}}</td>
       <td>
         <a href="{{ route('admin.editar', $item) }}" class="btn" style="background: #486A8C;">

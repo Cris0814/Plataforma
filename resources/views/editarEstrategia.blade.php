@@ -34,11 +34,7 @@
           </div>
         @enderror
         
-        @error('estra_evaluacion')
-          <div class="alert alert-danger">
-            La Estrategia de evaluacion es obligatoria
-          </div>
-        @enderror
+        
 
               
         @error('valoracion_estra')
@@ -63,7 +59,7 @@
           <option value="" selected disabled>Seleccione un Tipo de Estrategia</option>
 
                 @foreach($tipo_estras as $tipo_estra)
-                    <option value="{{ $tipo_estra->id}}" >
+                    <option value="{{ $tipo_estra->id}}, {{ $tipo_estra->nombre}}" >
                         {{$tipo_estra->nombre}}
                     </option>
                 @endforeach
@@ -77,24 +73,7 @@
            
 </option>
 </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="valoracion_estra">Valoracion general de la estrategia</label>
-           <select name="valoracion_estra" class="form-control form-gape" id="valoracion_estra" value="{{ old('valoracion_estra') }}">
-            <option value="" selected disabled>{{ $estrategias->valoracion_estra }}</option>
-            <option >0</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-            <option >6</option>
-            <option >7</option>
-            <option >8</option>
-            <option >9</option>
-            <option >10</option>
-           
-          </select>
-        </div>
+        
         
         
         <div class="form-group col-md-6">
@@ -112,7 +91,7 @@
           <option value="" selected disabled>Seleccione un Tipo de Herramienta</option>
 
                 @foreach($tipo_herras as $tipo_herra)
-                    <option value="{{ $tipo_herra->id}}" >
+                    <option value="{{ $tipo_herra->id}}, {{ $tipo_herra->nombre}}" >
                         {{$tipo_herra->nombre}}
                     </option>
                 @endforeach
@@ -126,6 +105,24 @@
            
 </option>
 </div>
+<div class="form-group col-md-6">
+         <label class="text" for="valoracion_estra">Valoracion general de la estrategia</label>
+           <select name="valoracion_estra" class="form-control form-gape" id="valoracion_estra" value="{{ old('valoracion_estra') }}">
+            <option value="" selected disabled>{{ $estrategias->valoracion_estra }}</option>
+            <option >0</option>
+            <option >1</option>
+            <option >2</option>
+            <option >3</option>
+            <option >4</option>
+            <option >5</option>
+            <option >6</option>
+            <option >7</option>
+            <option >8</option>
+            <option >9</option>
+            <option >10</option>
+           
+          </select>
+        </div>
       
         <br>
         <br>

@@ -46,21 +46,35 @@ class UserController extends Controller
         return view('admin', compact('admins','paises','ciudades','instituciones'));
     }
 
-    public function getCiudad(Request $request, $id){
-        if($request->ajax()){
-            $ciudades = Ciudad::ciudades($id);
-            return response()->json($ciudades);
-        }
-    }    
+     
 // para crear Docente
     public function crear(Request $request){
         
-        
+        $this->validate($request,['name' => 'required',
+        'email' => 'required',    
+        'institucion' => 'required',
+        'pais' => 'required',
+        'ciudad' => 'required',
+        'region' => 'required',
+
+    ]);
         $request['password'] = Hash::make('secret');
         $request['is_admin'] = true;
         // dd($request->all());
 
+        $palabra = explode(',',$request['institucion']);
+        $request['institucion'] = $palabra[1];
+        $palabra1 = explode(',',$request['pais']);
+        $request['pais'] = $palabra1[1];
+
+
+
+
+
        $userNuevo = User::create($request->all());
+
+    
+
 
     //    $userNuevo->name = $request->name;
     //    $userNuevo->edad = $request->edad;
@@ -96,11 +110,15 @@ class UserController extends Controller
 
     public function update(Request $request, $id){
 
+        
         // dd($request->all());
         $userUpdate = App\User::findOrFail($id);
         $userUpdate->name = $request->name; 
+        $userUpdate->email = $request->email; 
         $userUpdate->edad = $request->edad; 
-        $userUpdate->institucion = $request->institucion;
+        $palabra2 = explode(',',$request['institucion']);
+        $userUpdate->institucion = $palabra2[1];
+        
         $userUpdate->programa = $request->programa; 
         $userUpdate->asignatura = $request->asignatura;
         $userUpdate->num_estudiante = $request->num_estudiante; 

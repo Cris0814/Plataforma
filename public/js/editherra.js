@@ -17,7 +17,7 @@ if (! tipo_herra_id){
 $.get('/api/editarEstrategia/'+tipo_herra_id+'/herra', function (data) {
     var html_select = '<option value="">Seleccione una Herramienta</option>';
     for (var i=0; i<data.length; i++)
-        html_select += '<option value="'+data[i].id+'">'+data[i].nombre+'</option>'
+        html_select += '<option value="'+data[i].nombre+'">'+data[i].nombre+'</option>'
     $('#select-herra').html(html_select);
 
 });

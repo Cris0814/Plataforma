@@ -30,10 +30,13 @@ class InstitucionController extends Controller
 
     public function crear(InstitucionRequest $request){
 
+        
+
        $institucionNueva = new App\Institucion;
 
        $institucionNueva->nombre = $request->nombre;
-       $institucionNueva->pais = $request->pais;
+       $palabra1 = explode(',',$request['pais']);
+        $institucionNueva->pais = $palabra1[1];
        $institucionNueva->ciudad = $request->ciudad;
        $institucionNueva->tipo = $request->tipo;
        
@@ -51,9 +54,12 @@ class InstitucionController extends Controller
 
     public function update(Request $request, $id){
 
+        
+
         $institucionUpdate = App\Institucion::findOrFail($id);
         $institucionUpdate->nombre = $request->nombre;
-        $institucionUpdate->pais = $request->pais;
+        $palabra1 = explode(',',$request['pais']);
+        $institucionUpdate->pais = $palabra1[1];
         $institucionUpdate->ciudad = $request->ciudad;
         $institucionUpdate-> tipo = $request->tipo;
         

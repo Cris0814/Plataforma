@@ -11,10 +11,10 @@ class Estrategia extends Model
     protected $fillable = [
         'tipo_estra',
         'nom_estra',
+        'compete_evaluar',
         'tipo_herra',
         'nom_herra',
-        'compete_evaluar',
-        
+          
         'valoracion_estra',
     ];
 }

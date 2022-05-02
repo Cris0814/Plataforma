@@ -42,15 +42,18 @@ class AdminController extends Controller
                 
        ]);
 
-       $adminNuevo = new App\Admin;
-       $adminNuevo->name = $request->name;
-       $adminNuevo->email = $request->email;
-       $adminNuevo->institucion = $request->institucion;
-       $
-       $adminNuevo->pais = $request->pais;
-       $adminNuevo->ciudad = $request->ciudad;
-       $adminNuevo->region = $request->region;
-       $adminNuevo->save();
+      
+
+       $userNuevo = new App\User;
+       $userNuevo->name = $request->name;
+       $userNuevo->email = $request->email;
+       $palabra = explode(',',$request['institucion']);
+       $request['institucion'] = $palabra[1];
+       $palabra1 = explode(',',$request['pais']);
+       $request['pais'] = $palabra1[1];
+       $userNuevo->ciudad = $request->ciudad;
+       $userNuevo->region = $request->region;
+       $userNuevo->save();
 
        $userNuevo->assignRole('admin');
        
@@ -65,8 +68,7 @@ class AdminController extends Controller
         
         
         // dd($instituciones);
-        return view('editarAdmin')
-        ->with(compact('users', 'instituciones','paises'));
+        return view('editarAdmin')->with(compact('users', 'instituciones','paises'));
     }
 
     public function update(Request $request, $id){
@@ -75,9 +77,10 @@ class AdminController extends Controller
         $adminUpdate = App\User::findOrFail($id);
         $adminUpdate->name = $request->name; 
         $adminUpdate->email = $request->email; 
-        $adminUpdate->institucion = $request->institucion; 
-        
-        $adminUpdate->pais = $request->pais; 
+        $palabra = explode(',',$request['institucion']);
+        $adminUpdate->institucion = $palabra[1];
+        $palabra1 = explode(',',$request['pais']);
+        $adminUpdate->pais = $palabra1[1];
         $adminUpdate->ciudad = $request->ciudad; 
         $adminUpdate->region = $request->region; 
         $adminUpdate->save();
@@ -86,20 +89,14 @@ class AdminController extends Controller
     }
 
     public function eliminar($id){
-         
-        $adminEliminar = App\Admin::findOrFail($id);
+        
+        $adminEliminar = App\User::findOrFail($id);
         $adminEliminar->delete();
 
         return back()->with('mensaje', 'Admin Eliminado');
     }
 
-    public function getCiudad(Request $request, $id){
-        if($request->ajax()){
-            $ciudades = Ciudad::ciudades($id);
-            return response()->json($ciudades);
-        }
-    } 
-    public function byPais($id){
+        public function byPais($id){
         return Ciudad::where('pais_id', $id)->get();
     }
 }

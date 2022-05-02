@@ -71,8 +71,9 @@
         </div>
       </div>
       @endforeach()
-      <th scope="col">Acciones</th>
       @can('add')
+      <th scope="col">Acciones</th>
+      
       <th scope="col"><button class="btn btn-block" typw="" data-toggle="modal" data-target="#exampleModal" style="background:#486A8C;color:#EFE6E6; font-size: 18px;">+</button></th>
       @endcan 
     </tr>
@@ -84,6 +85,7 @@
       <td>{{$item->nombre}}</td>
       
       
+      @can('add')
       <td>
       <a href="{{ route('tipo_herra.editar', $item) }}" class="btn" style="background: #486A8C;">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
@@ -100,6 +102,7 @@
           </button>
         </form>
       </td>
+      @endcan
     </tr>
     @endforeach()
   </tbody>
@@ -219,9 +222,9 @@
       </div>
   
       @endforeach()
-      
-      <th scope="col">Acciones</th>
       @can('add')
+      <th scope="col">Acciones</th>
+     
       <th scope="col"><button class="btn btn-block" typw="" data-toggle="modal" data-target="#exampleModal" style="background:#486A8C;color:#EFE6E6; font-size: 18px;">+</button></th>
       @endcan      
     </tr>
@@ -234,7 +237,7 @@
       <td>{{$item1->nombre}}</td>
       <td>{{$item1->tipo_herra_id}}</td>
       
-      
+      @can('add')
       <td>
       <a href="{{ route('herra.editar', $item1) }}" class="btn" style="background: #486A8C;">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16" style="color:#EFE6E6">
@@ -251,6 +254,7 @@
           </button>
         </form>
       </td>
+      @endcan  
     </tr>
     @endforeach()
   </tbody>

@@ -10,11 +10,7 @@
 </style>
 </head>
 <body>
-@error('nom_herra')
-          <div class="alert alert-danger">
-            El Nombre de la Herramienta es obligatorio
-          </div>
-        @enderror
+
 
         @error('tipo_licencia')
           <div class="alert alert-danger">

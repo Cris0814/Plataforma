@@ -33,26 +33,8 @@
         <td>{{$item->name}}</td>
         <td>{{$item->email}}</td>
         <td>{{$item->edad}}</td>
-           
-        @if($item->institucion == 0)  
-      <td></td>
-      @else
-      @foreach($instituciones as $institucion)
-      @if($institucion->id==$item->institucion)
-      <td>{{$institucion->nombre}}</td>
-      @endif()  
-      @endforeach()  
-      @endif()  
-
-      @if($item->programa == 0)  
-      <td></td>
-      @else
-      @foreach($programas as $programa)
-      @if($programa->id==$item->programa)
-      <td>{{$programa->nombre}}</td>
-      @endif()  
-      @endforeach()  
-      @endif() 
+        <td>{{$item->institucion}}</td>   
+        <td>{{$item->programa}}</td>
         <td>{{$item->asignatura}}</td>
         <td>{{$item->num_estudiante}}</td>
         <td>{{$item->num_m}}</td>
@@ -126,7 +108,7 @@
             La Valoracion general de la estrategia es obligatoria
           </div>
         @enderror
-      <form action="{{ route('estrategia.crear') }}" method="POST">
+        <form action="{{ route('estrategia.crear') }}" method="POST">
       @csrf
       <div>
       
@@ -143,10 +125,10 @@
           <option value="" selected disabled>Seleccione un Tipo de Estrategia</option>
 
                 @foreach($tipo_estras as $tipo_estra)
-                    <option value="{{ $tipo_estra->id}}" >
+                    <option value="{{ $tipo_estra->id}},{{$tipo_estra->nombre}}" >
                         {{$tipo_estra->nombre}}
                     </option>
-                @endforeach()
+                @endforeach
 
             </select>
 </div>
@@ -158,24 +140,8 @@
            
 
 </div>
-        <div class="form-group col-md-6">
-         <label class="text" for="valoracion_estra">Valoracion general de la estrategia</label>
-           <select name="valoracion_estra" class="form-control form-gape" id="valoracion_estra" value="{{ old('valoracion_estra') }}">
-            <option value="" selected disabled>Seleccione una opción</option>
-            <option >0</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
-            <option >5</option>
-            <option >6</option>
-            <option >7</option>
-            <option >8</option>
-            <option >9</option>
-            <option >10</option>
-           
-          </select>
-        </div>
+        
+        
         
         
         <div class="form-group col-md-6">
@@ -194,10 +160,10 @@
           <option value="" selected disabled>Seleccione un Tipo de Herramienta</option>
 
                 @foreach($tipo_herras as $tipo_herra)
-                    <option value="{{ $tipo_herra->id}}" >
+                    <option value="{{ $tipo_herra->id}},{{$tipo_herra->nombre}}" >
                         {{$tipo_herra->nombre}}
                     </option>
-                @endforeach()
+                @endforeach
 
             </select>
 </div>
@@ -207,23 +173,37 @@
           <option value="" selected disabled>Seleccione una Herramienta</option>   
         </select>
            
-</option>
+
 </div>
-        
+<div class="form-group col-md-6">
+         <label class="text" for="valoracion_estra">Valoracion general de la estrategia</label>
+           <select name="valoracion_estra" class="form-control form-gape" id="valoracion_estra" value="{{ old('valoracion_estra') }}">
+            <option value="" selected disabled>Seleccione una opción</option>
+            <option >0</option>
+            <option >1</option>
+            <option >2</option>
+            <option >3</option>
+            <option >4</option>
+            <option >5</option>
+            <option >6</option>
+            <option >7</option>
+            <option >8</option>
+            <option >9</option>
+            <option >10</option>
+           
+          </select>
+        </div>
 
    
         @foreach($columnas as $column)
         <div class="form-group col-md-6">
          <label class="text" for="{{$column->nombre}}">{{$column->nombre}}</label>
-          <input type="text" name="{{$column->nombre}}" class="form-control form-gape" value="" >
-          
-                    
+          <input type="text" name="{{$column->nombre}}" class="form-control form-gape" value="" >         
         </div>
-        @endforeach()
+        @endforeach
         <button class="btn-form" type="submit" style = "margin-top:30px; margin-left:127px">Agregar</button> 
       </div>
     </form>
-    <br>
     
     <div class="table-responsive">
 <table class="table">
@@ -232,11 +212,12 @@
       <th scope="col">#Id</th>
       <th scope="col">Tipo de Estrategia</th>
       <th scope="col">Nombre de Estrategia</th>
-      <th scope="col">Valoracion general de la estrategia</th>
+      
       
       <th scope="col">Competencias a Evaluar</th>
       <th scope="col">Tipo de Herramienta</th>
       <th scope="col">Nombre de la Herramienta</th>
+      <th scope="col">Valoracion general de la estrategia</th>
   
       
        @can('add')     
@@ -266,8 +247,7 @@
           <div class="modal-footer">
           </div>
         </div>
-      </div>
-  </div>
+  
   
       @endforeach()
       @endcan
@@ -281,50 +261,12 @@
       @foreach($estrategias as $item)
     <tr>
       <th scope="row">{{$item->id}}</th>
-      @if($item->tipo_estra == 0) 
-      <td></td>
-      @else
-      @foreach($tipo_estras as $tipo_estra)
-      @if($tipo_estra->id==$item->tipo_estra)
-      <td>{{$tipo_estra->nombre}}</td>
-      @endif()  
-      @endforeach()  
-      @endif()  
-      
-      @if($item->nom_estra == 0)  
-      <td></td>
-      @else
-      @foreach($estras as $estra)
-      @if($estra->id==$item->nom_estra)
-      <td>{{$estra->nombre}}</td>
-      @endif()  
-      @endforeach()  
-      @endif() 
-      
-      
-      <td>{{$item->valoracion_estra}}</td>
-      
+      <td>{{$item->tipo_estra}}</td>
+      <td>{{$item->nom_estra}}</td>
       <td>{{$item->compete_evaluar}}</td>
-      @if($item->tipo_herra == 0)  
-      
-      @else
-      @foreach($tipo_herras as $tipo_herra)
-      @if($tipo_herra->id==$item->tipo_herra)
-      <td>{{$tipo_herra->nombre}}</td>
-      @endif()  
-      @endforeach()  
-      @endif()  
-
-      @if($item->nom_herra == 0)  
-      
-      @else
-      @foreach($herras as $herra)
-      @if($herra->id==$item->nom_herra)
-      <td>{{$herra->nombre}}</td>
-      @endif()  
-      @endforeach()  
-      @endif() 
-      
+      <td>{{$item->tipo_herra}}</td>
+      <td>{{$item->nom_herra}}</td>      
+      <td>{{$item->valoracion_estra}}</td>
       
       
       <td>
@@ -435,16 +377,11 @@
       
       
       @foreach($estrategias as $estra)
-      @if($estra->nom_herra == 0)  
-      @else
-      @foreach($herras as $herra)
-      @if($herra->id==$estra->nom_herra)
+      
       <option value="{{ $estra->nom_herra}}">
-                {{$herra->nombre}}
+                {{$estra->nom_herra}}
         </option>
-      @endif()  
-      @endforeach()  
-      @endif() 
+     
       @endforeach()
            </select>
            
@@ -617,18 +554,10 @@
   </div>
   <tbody class = "text">
       @foreach($herramientas as $item1)
-      @foreach($estrategias as $item2)
+      
     <tr>
       <th scope="row">{{$item1->id}}</th>
-      @if($item->nom_herra == 0)  
-      
-      @else
-      @foreach($herras as $herra)
-      @if($herra->id==$item->nom_herra)
-      <td>{{$herra->nombre}}</td>
-      @endif()  
-      @endforeach()  
-      @endif() 
+      <td>{{$item1->nom_herra}}</td>
       <td>{{$item1->tipo_licencia}}</td>
       <td>{{$item1->funciones}}</td>
       <td>{{$item1->interaccion}}</td>
@@ -656,7 +585,7 @@
       </td>
     </tr>
     @endforeach()
-    @endforeach()
+    
   </tbody>
 </table>
 </div>

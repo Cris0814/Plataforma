@@ -44,8 +44,8 @@
           <select name="pais" class="form-control form-gape" id="select-pais" value="{{ old('pais') }}">
           <option value="" selected disabled>Seleccione un Pais</option>
 
-                @foreach($paises as $pais)
-                    <option value="{{ $pais->id}}" >
+          @foreach($paises as $pais)
+                    <option value="{{ $pais->id}}, {{ $pais->nombre}}" >
                         {{$pais->nombre}}
                     </option>
                 @endforeach()
@@ -138,25 +138,8 @@
     <tr>
       <th scope="row">{{$item->id}}</th>
       <td>{{$item->nombre}}</td>
-      @if($item->pais == 0)  
-      <td></td>
-      @else
-      @foreach($paises as $pais)
-      @if($pais->id==$item->pais)
-      <td>{{$pais->nombre}}</td>
-      @endif()  
-      @endforeach()  
-      @endif()  
-
-      @if($item->ciudad == 0)  
-      <td></td>
-      @else
-      @foreach($ciudades as $ciudad)
-      @if($ciudad->id==$item->ciudad)
-      <td>{{$ciudad->nombre}}</td>
-      @endif()  
-      @endforeach()  
-      @endif() 
+      <td>{{$item->pais}}</td>
+      <td>{{$item->ciudad}}</td>
       <td>{{$item->tipo}}</td>
       
       <td>

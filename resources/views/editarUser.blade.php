@@ -84,7 +84,7 @@
           
 
                 @foreach($instituciones as $institucion)
-                    <option value="{{ $institucion->id}}" >
+                    <option value="{{ $institucion->id}}, {{ $institucion->nombre}}" >
                         {{$institucion->nombre}}
                     </option>
                 @endforeach()
@@ -96,6 +96,7 @@
         <div class="form-group col-md-6">
           <label class = "text" for="programa">Programa</label>
           <select name="programa" class="form-control form-gape" id="select-programa" value="{{ $users->programa }}">
+          <option value="" selected disabled>{{ $users->programa }}</option>
            </select>
            
 </option>

@@ -66,7 +66,7 @@
           <select name="institucion" placeholder="Institucion" class="form-control form-gape" value="{{ old('institucion') }}">
             <option  value="" selected disabled>Seleccione una Institucion</option>
             @foreach($instituciones as $institucion)
-          <option value = "{{$institucion->id}}">{{$institucion->nombre}}</option>
+          <option value = "{{$institucion->id}},{{$institucion->nombre}}">{{$institucion->nombre}}</option>
           @endforeach()
           </select>
         </div>
@@ -75,10 +75,10 @@
           <label class = "text" for="pais">Pais</label>
           
           <select name="pais" class="form-control form-gape" id="select-pais" value="{{ $users->pais }}">
-          <option value="" selected disabled>Seleccione un Pais</option>
+          <option value="" selected disabled>{{ $users->pais }}</option>
 
-                @foreach($paises as $pais)
-                    <option value="{{ $pais->id}}" >
+          @foreach($paises as $pais)
+                    <option value="{{ $pais->id}}, {{ $pais->nombre}}" >
                         {{$pais->nombre}}
                     </option>
                 @endforeach()
@@ -88,6 +88,7 @@
             <div class="form-group col-md-6">
           <label class = "text" for="ciudad">Ciudad</label>
           <select name="ciudad" class="form-control form-gape" id="select-ciudad" value="{{ $users->ciudad }}">
+          <option value="" selected disabled>{{ $users->ciudad }}</option>
            </select>
            
 </option>

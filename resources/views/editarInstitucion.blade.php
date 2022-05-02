@@ -50,7 +50,7 @@
           <option value="" selected disabled>{{ $instituciones->pais }}</option>
 
                 @foreach($paises as $pais)
-                    <option value="{{ $pais->id}}" >
+                    <option value="{{ $pais->id}}, {{ $pais->nombre}}" >
                         {{$pais->nombre}}
                     </option>
                 @endforeach

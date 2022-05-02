@@ -51,17 +51,19 @@ class EstrategiaController extends Controller
 
        $estrategiaNueva = new App\Estrategia;
 
-       $estrategiaNueva->tipo_estra = $request->tipo_estra;
+       $palabra1 = explode(',',$request['tipo_estra']);
+        $estrategiaNueva->tipo_estra = $palabra1[1];
+       
        $estrategiaNueva->nom_estra = $request->nom_estra;
-       $estrategiaNueva->valoracion_estra = $request->valoracion_estra;
+       
        
        $estrategiaNueva->compete_evaluar = $request->compete_evaluar;
-       $estrategiaNueva->tipo_herra = $request->tipo_herra;
+       
+       $palabra2 = explode(',',$request['tipo_herra']);
+        $estrategiaNueva->tipo_herra = $palabra2[1];
+       
        $estrategiaNueva->nom_herra = $request->nom_herra;
-       
-       
-       
-
+       $estrategiaNueva->valoracion_estra = $request->valoracion_estra;
        $estrategiaNueva->save();
        return back()->with('mensaje','Estrategia Agregada');
 
@@ -81,12 +83,12 @@ class EstrategiaController extends Controller
         $estrategiaUpdate = App\Estrategia::findOrFail($id);
         $estrategiaUpdate->tipo_estra = $request->tipo_estra;
         $estrategiaUpdate->nom_estra = $request->nom_estra;
-        $estrategiaUpdate->valoracion_estra = $request->valoracion_estra;
+        
         
         $estrategiaUpdate->compete_evaluar = $request->compete_evaluar;
         $estrategiaUpdate->tipo_herra = $request->tipo_herra;
         $estrategiaUpdate->nom_herra = $request->nom_herra;
-        
+        $estrategiaUpdate->valoracion_estra = $request->valoracion_estra;
         
         
         $estrategiaUpdate->save();  

@@ -22,7 +22,10 @@ class EstraController extends Controller
     }
 
     public function crear(EstraRequest $request){
-
+        $this->validate($request,['nombre' => 'required',
+        'tipo_estra_id' => 'required',
+         
+        ]);
        $estraNueva = new App\Estra;
 
        $estraNueva->nombre = $request->nombre;
@@ -43,6 +46,10 @@ class EstraController extends Controller
 
     public function update(Request $request, $id){
 
+        $this->validate($request,['nombre' => 'required',
+        'tipo_estra_id' => 'required',
+         
+        ]);
         $estraUpdate = App\Estra::findOrFail($id);
         $estraUpdate->nombre = $request->nombre;
         $estraUpdate->tipo_estra_id = $request->tipo_estra_id;

@@ -26,11 +26,12 @@ class EstrategiaRequest extends FormRequest
         return [
             'tipo_estra' => 'required',
             'nom_estra' => 'required',
-            'valoracion_estra' => 'required',
-            'estra_evaluacion' => 'required',
+            
+            
             'compete_evaluar' => 'required',
             'tipo_herra' => 'required',
             'nom_herra' => 'required',
+            'valoracion_estra' => 'required',
         ];
     }
 }
